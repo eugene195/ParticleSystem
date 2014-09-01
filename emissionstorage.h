@@ -8,7 +8,7 @@ class EmissionStorage
 {
 public:
     EmissionStorage(Emitter initialEmit) : emitter(initialEmit), particleList(QList<Particle *>()) {}
-    EmissionStorage(QVector3D emitterPos) : emitter(Emitter(emitterPos)), particleList(QList<Particle *>()) {}
+    EmissionStorage(MathVector emitterPos) : emitter(Emitter(emitterPos)), particleList(QList<Particle *>()) {}
     void emitParticle();
 
 private:

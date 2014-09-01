@@ -2,12 +2,12 @@
 #define EMITTER_H
 
 #include "particle.h"
-
+#include <cstdlib>
 class Emitter
 {
 public:
-    Emitter(QVector3D initPos = QVector3D(0, 0, 0)
-            , QVector3D initSpeed = QVector3D(0, 0, 0)
+    Emitter(MathVector initPos = MathVector()
+            , MathVector initSpeed = MathVector()
             , double initSpread = 0.15
             , QColor initColor = Qt::blue
             , int initEmissionRate = 1)
@@ -21,13 +21,22 @@ public:
     }
 
     Particle * createParticle(){
+        MathVector angle(randomAngle(speed.getAngle().getX()), randomAngle(speed.getAngle().getY()), randomAngle(speed.getAngle().getZ()));
+        double length = speed.getLen();
+        MathVector newPos = position;
+        MathVector newSpeed = MathVector::fromAngle(angle, length);
+
 //        Particle * newParticle = new Particle();
-        return 0;
+        return new Particle(newSpeed, MathVector(), 0.2 , newPos); // InitMass
+    }
+
+    double randomAngle(double current){
+        return current + spread - (rand()* spread * 2);
     }
 
 private:
-    QVector3D position;
-    QVector3D speed;
+    MathVector position;
+    MathVector speed;
     double spread;
     QColor drawColor;
     int emissionRate;

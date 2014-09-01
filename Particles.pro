@@ -18,14 +18,15 @@ SOURCES += main.cpp\
     emitter.cpp \
     emissionstorage.cpp \
     emissionmanager.cpp \
-    drawer.cpp
+    drawer.cpp \
+    mathvector.cpp
 
 HEADERS  += mainwindow.h \
     particle.h \
-    particleinfo.h \
     emitter.h \
     emissionstorage.h \
     emissionmanager.h \
-    drawer.h
+    drawer.h \
+    mathvector.h
 
 FORMS    += mainwindow.ui

@@ -2,6 +2,6 @@
 
 void Particle::step()
 {
-    info.speed += info.acceleration;
-    position += info.speed;
+    speed = speed + acceleration;
+    position = position + speed;
 }
