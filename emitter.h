@@ -25,9 +25,7 @@ public:
         double length = speed.getLen();
         MathVector newPos = position;
         MathVector newSpeed = MathVector::fromAngle(angle, length);
-
-//        Particle * newParticle = new Particle();
-        return new Particle(newSpeed, MathVector(), 0.2 , newPos); // InitMass
+        return new Particle(newSpeed, MathVector(), initMass , newPos); // InitMass
     }
 
     double randomAngle(double current){
@@ -40,6 +38,7 @@ private:
     double spread;
     QColor drawColor;
     int emissionRate;
+    const double initMass = 0.2;
 };
 
 #endif // EMITTER_H

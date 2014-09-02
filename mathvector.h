@@ -48,11 +48,11 @@ public:
     }
 
     MathVector getAngle(){
-        // TODO
+        return MathVector(atan2(Y, X), atan2(Z, Y), atan2(Z, X));
     }
 
     static MathVector fromAngle(const MathVector & angle, double length){
-        // TODO
+        return MathVector(length * cos(angle.getX()), length * sin(angle.getX()), length * sin(angle.getZ()));
     }
 
     double getX() const;
