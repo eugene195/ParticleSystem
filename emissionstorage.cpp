@@ -1,6 +1,6 @@
 #include "emissionstorage.h"
 
-void EmissionStorage::emitParticle()
+ParticleList EmissionStorage::emitParticle()
 {
     QList<Particle *> newList;
     newList = emitter.emitParticles();
@@ -8,4 +8,5 @@ void EmissionStorage::emitParticle()
     foreach (Particle * newPart, newList) {
         particleList.append(newPart);
     }
+    return newList;
 }

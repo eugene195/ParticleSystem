@@ -17,6 +17,15 @@ public:
     void step();
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option,
                QWidget *widget);
+    double getX(){
+        return position.getX();
+    }
+    double getY(){
+        return position.getY();
+    }
+    double getZ(){
+        return position.getZ();
+    }
 
 private:
     MathVector speed;

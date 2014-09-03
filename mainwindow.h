@@ -2,7 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-#include "emissionmanager.h"
+#include "systemmanager.h"
 
 namespace Ui {
 class MainWindow;

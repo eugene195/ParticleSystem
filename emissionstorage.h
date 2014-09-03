@@ -4,12 +4,14 @@
 #include "emitter.h"
 #include <QList>
 
+typedef QList<Particle *> ParticleList;
+
 class EmissionStorage
 {
 public:
     EmissionStorage(Emitter initialEmit) : emitter(initialEmit), particleList(QList<Particle *>()) {}
     EmissionStorage(MathVector emitterPos) : emitter(Emitter(emitterPos)), particleList(QList<Particle *>()) {}
-    void emitParticle();
+    ParticleList emitParticle();
 
 private:
     Emitter emitter;

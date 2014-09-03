@@ -17,16 +17,17 @@ SOURCES += main.cpp\
     particle.cpp \
     emitter.cpp \
     emissionstorage.cpp \
-    emissionmanager.cpp \
     drawer.cpp \
-    mathvector.cpp
+    mathvector.cpp \
+    systemmanager.cpp
 
 HEADERS  += mainwindow.h \
     particle.h \
     emitter.h \
     emissionstorage.h \
-    emissionmanager.h \
     drawer.h \
-    mathvector.h
+    mathvector.h \
+    systemmanager.h \
+    canvas.h
 
 FORMS    += mainwindow.ui
