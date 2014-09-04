@@ -19,7 +19,8 @@ SOURCES += main.cpp\
     emissionstorage.cpp \
     drawer.cpp \
     mathvector.cpp \
-    systemmanager.cpp
+    systemmanager.cpp \
+    mover.cpp
 
 HEADERS  += mainwindow.h \
     particle.h \
@@ -28,6 +29,6 @@ HEADERS  += mainwindow.h \
     drawer.h \
     mathvector.h \
     systemmanager.h \
-    canvas.h
+    mover.h
 
 FORMS    += mainwindow.ui

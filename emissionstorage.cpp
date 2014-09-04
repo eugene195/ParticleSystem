@@ -10,3 +10,10 @@ ParticleList EmissionStorage::emitParticle()
     }
     return newList;
 }
+
+void EmissionStorage::moveParticle()
+{
+    foreach(Particle * part, particleList){
+        part->step();
+    }
+}

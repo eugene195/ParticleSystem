@@ -3,6 +3,7 @@
 
 #include "emissionstorage.h"
 #include "drawer.h"
+#include "mover.h"
 
 typedef QList<EmissionStorage *> StorageList;
 
@@ -16,8 +17,18 @@ public:
     }
 
     void loop();
+
+    void initScene(QGraphicsScene *scene){
+        drawer = new Drawer(scene);
+    }
+
+    void testFill(){
+        EmissionStorage * st = new EmissionStorage(MathVector(100, 100, 100));
+        storages.append(st);
+    }
+
 private:
-    SystemManager() { drawer = new Drawer(); }
+    SystemManager() {  }
     StorageList storages;
     Drawer *drawer;
 

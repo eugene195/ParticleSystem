@@ -12,6 +12,7 @@ public:
     EmissionStorage(Emitter initialEmit) : emitter(initialEmit), particleList(QList<Particle *>()) {}
     EmissionStorage(MathVector emitterPos) : emitter(Emitter(emitterPos)), particleList(QList<Particle *>()) {}
     ParticleList emitParticle();
+    void moveParticle();
 
 private:
     Emitter emitter;

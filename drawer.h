@@ -2,19 +2,25 @@
 #define DRAWER_H
 
 #include <QPointF>
-
+#include <QGraphicsScene>
 #include "emissionstorage.h"
-#include "canvas.h"
 
 class Drawer
 {
-public:
-    Drawer() { cnv = new Canvas(); }
-    void addToCanvas(const ParticleList & particles);
-    void exec();
 
 private:
-    Canvas *cnv;
-};
+    QGraphicsScene *scene;
+public:
+    Drawer(QGraphicsScene *newScene) { scene = newScene;}
 
+    void addPartToCanvas(const ParticleList & particles){
+        foreach(Particle * part, particles){
+            scene->addItem(part);
+        }
+    }
+
+    void exec(){
+        scene->update();
+    }
+};
 #endif // DRAWER_H

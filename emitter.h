@@ -3,14 +3,18 @@
 
 #include "particle.h"
 #include <cstdlib>
+
+const int DEF_SPEED = 5;
+const int DEF_EMISSION_RATE = 3;
+const double DEF_SPREAD = 0.15;
 class Emitter
 {
 public:
     Emitter(MathVector initPos = MathVector()
-            , MathVector initSpeed = MathVector()
-            , double initSpread = 0.15
+            , MathVector initSpeed = MathVector(DEF_SPEED, DEF_SPEED, DEF_SPEED)
+            , double initSpread = DEF_SPREAD
             , QColor initColor = Qt::blue
-            , int initEmissionRate = 1)
+            , int initEmissionRate = DEF_EMISSION_RATE)
         : position(initPos), speed(initSpeed), spread(initSpread), drawColor(initColor), emissionRate(initEmissionRate) {}
 
     QList<Particle *> emitParticles(){
