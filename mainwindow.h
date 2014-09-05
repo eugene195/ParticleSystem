@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include <QGraphicsScene>
+#include <QTimer>
 #include "systemmanager.h"
 
 
@@ -21,9 +22,16 @@ public:
 private slots:
     void on_pushButton_clicked();
 
+public slots:
+    void loop()
+    {
+        manager.loop();
+    }
+
 private:
     Ui::MainWindow *ui;
     QGraphicsScene *scene;
+    SystemManager manager;
 };
 
 #endif // MAINWINDOW_H

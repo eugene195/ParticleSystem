@@ -1,18 +1,21 @@
 #include "systemmanager.h"
-
+#include <unistd.h>
 
 
 void SystemManager::loop()
 {
-    while(1){
-        // Generate and add to scene
-        foreach (EmissionStorage * storage, storages) {
-            Mover::move(storage);
-            ParticleList newParticles = storage->emitParticle();
-            drawer->addPartToCanvas(newParticles);
-        }
+    if(storages.isEmpty())
+        return;
 
-        // draw
-        drawer->exec();
+
+    Mover::move(storages, fields);
+    // Generate and add to scene
+    foreach (EmissionStorage * storage, storages) {
+
+        ParticleList newParticles = storage->emitParticle();
+        drawer->addPartToCanvas(newParticles);
     }
+
+    // draw
+    drawer->exec();
 }

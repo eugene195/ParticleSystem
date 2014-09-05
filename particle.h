@@ -5,6 +5,7 @@
 #include <QGraphicsItem>
 #include <QPainter>
 #include "mathvector.h"
+#include "field.h"
 
 class Particle : public QGraphicsItem
 {
@@ -14,7 +15,13 @@ public:
         : speed(initSpeed), acceleration(initAcc), mass(initMass),  position(initPos), color(initColor) {}
 
     QRectF boundingRect() const;
-    void step();
+
+    void applyField(const FieldList &fldlst);
+    void advance()
+    {
+        speed = speed + acceleration;
+        position = position + speed;
+    }
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option,
                QWidget *widget);
     double getX(){

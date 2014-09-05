@@ -4,14 +4,15 @@
 #include "particle.h"
 #include <cstdlib>
 
-const int DEF_SPEED = 5;
+const int DEF_SPEED = 6;
+const int DEF_ACC = 2;
 const int DEF_EMISSION_RATE = 3;
-const double DEF_SPREAD = 0.15;
+const double DEF_SPREAD = 0.00001;
 class Emitter
 {
 public:
     Emitter(MathVector initPos = MathVector()
-            , MathVector initSpeed = MathVector(DEF_SPEED, DEF_SPEED, DEF_SPEED)
+            , MathVector initSpeed = MathVector(DEF_SPEED, DEF_SPEED, 0)
             , double initSpread = DEF_SPREAD
             , QColor initColor = Qt::blue
             , int initEmissionRate = DEF_EMISSION_RATE)
@@ -33,7 +34,7 @@ public:
     }
 
     double randomAngle(double current){
-        return current + spread - (rand()* spread * 2);
+        return current + spread - (rand() * spread * 2);
     }
 
 private:
@@ -42,7 +43,7 @@ private:
     double spread;
     QColor drawColor;
     int emissionRate;
-    const double initMass = 0.2;
+    const double initMass = 0.06;
 };
 
 #endif // EMITTER_H

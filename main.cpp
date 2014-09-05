@@ -7,5 +7,10 @@ int main(int argc, char *argv[])
     MainWindow w;
     w.show();
 
+    QTimer timer;
+    QObject::connect(&timer, SIGNAL(timeout()), &w, SLOT(loop()));
+//    manager.loop();
+    timer.start(1000 / 33);
+
     return a.exec();
 }

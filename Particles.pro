@@ -29,6 +29,7 @@ HEADERS  += mainwindow.h \
     drawer.h \
     mathvector.h \
     systemmanager.h \
-    mover.h
+    mover.h \
+    field.h
 
 FORMS    += mainwindow.ui

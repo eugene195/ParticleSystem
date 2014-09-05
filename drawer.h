@@ -20,6 +20,7 @@ public:
     }
 
     void exec(){
+        scene->advance();
         scene->update();
     }
 };

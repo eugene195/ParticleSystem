@@ -2,9 +2,11 @@
 #define EMISSIONSTORAGE_H
 
 #include "emitter.h"
+#include "field.h"
 #include <QList>
 
 typedef QList<Particle *> ParticleList;
+
 
 class EmissionStorage
 {
@@ -12,11 +14,14 @@ public:
     EmissionStorage(Emitter initialEmit) : emitter(initialEmit), particleList(QList<Particle *>()) {}
     EmissionStorage(MathVector emitterPos) : emitter(Emitter(emitterPos)), particleList(QList<Particle *>()) {}
     ParticleList emitParticle();
-    void moveParticle();
+    void moveParticles();
+    void applyField(const FieldList & fields);
 
 private:
     Emitter emitter;
-    QList<Particle *> particleList;
+    ParticleList particleList;
 };
+
+typedef QList<EmissionStorage *> StorageList;
 
 #endif // EMISSIONSTORAGE_H

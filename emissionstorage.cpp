@@ -2,7 +2,7 @@
 
 ParticleList EmissionStorage::emitParticle()
 {
-    QList<Particle *> newList;
+    ParticleList newList;
     newList = emitter.emitParticles();
 
     foreach (Particle * newPart, newList) {
@@ -11,9 +11,16 @@ ParticleList EmissionStorage::emitParticle()
     return newList;
 }
 
-void EmissionStorage::moveParticle()
+void EmissionStorage::moveParticles()
 {
     foreach(Particle * part, particleList){
-        part->step();
+        part->advance();
+    }
+}
+
+void EmissionStorage::applyField(const FieldList &fields)
+{
+    foreach(Particle * part, particleList){
+        part->applyField(fields);
     }
 }

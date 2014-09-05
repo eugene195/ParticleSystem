@@ -1,6 +1,7 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
+#include <time.h>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -18,8 +19,13 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_pushButton_clicked()
 {
-    SystemManager manager = SystemManager::Instance();
     manager.initScene(scene);
     manager.testFill();
-    manager.loop();
+    srand (time(NULL));
+    QTimer timer;
+    connect(&timer, SIGNAL(timeout()), this, SLOT(loop()));
+//    manager.loop();
+    timer.start(1000 / 33);
+
+
 }

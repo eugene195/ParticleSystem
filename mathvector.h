@@ -21,6 +21,13 @@ public:
                 , Z + right.Z );
     }
 
+    const MathVector operator-(const MathVector& right) {
+        return MathVector(
+                  X - right.X
+                , Y - right.Y
+                , Z - right.Z );
+    }
+
 
     const MathVector operator*(double number) {
         return MathVector(
