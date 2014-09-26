@@ -7,12 +7,18 @@
 #include "mathvector.h"
 #include "field.h"
 
+const unsigned DEFAULT_COLOR_ALPHA = 255;
+
 class Particle : public QGraphicsItem
 {
 public:
     Particle();
-    Particle(MathVector initSpeed, MathVector initAcc, double initMass, MathVector initPos, QColor initColor = Qt::blue)
-        : speed(initSpeed), acceleration(initAcc), mass(initMass),  position(initPos), color(initColor) {}
+    Particle(MathVector initSpeed, MathVector initAcc, double initMass, MathVector initPos, QColor initColor = Qt::blue, int initLifeTime = 255)
+        : speed(initSpeed), acceleration(initAcc), mass(initMass),  position(initPos), color(initColor), lifeTime(initLifeTime)
+    {
+        brush = new QBrush(color);
+        pen = new QPen(color);
+    }
 
     QRectF boundingRect() const;
 
@@ -34,12 +40,25 @@ public:
         return position.getZ();
     }
 
+    int getLifeTime() const{
+        return lifeTime;
+    }
+
+    void killParticle(){
+        lifeTime = 0;
+    }
+
 private:
     MathVector speed;
     MathVector acceleration;
     double mass;
     MathVector position;
     QColor color;
+
+    QPen *pen;
+    QBrush *brush;
+    // STILL NOT USED
+    int lifeTime;
 
 
 };

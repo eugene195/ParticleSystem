@@ -18,8 +18,9 @@ void Particle::applyField(const FieldList &fldlst)
 
 void Particle::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
 {
-    painter->setBrush(QBrush(Qt::blue));
-    painter->setPen(QPen(Qt::black));
-    int rad = 5;
+    painter->setBrush(*brush);
+    painter->setPen(*pen);
+    int rad = 2;
+
     painter->drawEllipse(position.getX(), position.getY(), rad, rad);
 }

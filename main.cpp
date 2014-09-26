@@ -14,3 +14,8 @@ int main(int argc, char *argv[])
 
     return a.exec();
 }
+
+
+// TODO
+// Particle destroyer
+// New Scene
