@@ -30,6 +30,7 @@ HEADERS  += mainwindow.h \
     mathvector.h \
     systemmanager.h \
     mover.h \
-    field.h
+    field.h \
+    MathOperations.h
 
 FORMS    += mainwindow.ui

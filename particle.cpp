@@ -20,7 +20,12 @@ void Particle::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, 
 {
     painter->setBrush(*brush);
     painter->setPen(*pen);
-    int rad = 2;
+    int sz = nodes.size();
 
-    painter->drawEllipse(position.getX(), position.getY(), rad, rad);
+    for(int i = 0; i < sz; ++i) {
+        for(int j = 0; j < sz; ++j) {
+            if(i != j)
+                painter->drawLine(nodes[i].toPoint(), nodes[j].toPoint());
+        }
+    }
 }

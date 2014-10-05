@@ -2,6 +2,7 @@
 #define MATHVECTOR_H
 
 #include <QVector>
+#include <QPointF>
 #include <qmath.h>
 
 class MathVector
@@ -62,6 +63,10 @@ public:
         return MathVector(length * cos(angle.getX()), length * sin(angle.getX()), length * sin(angle.getZ()));
     }
 
+    QPointF toPoint(){
+        return QPointF(X, Y);
+    }
+
     double getX() const;
     void setX(double value);
 
@@ -71,7 +76,7 @@ public:
     double getZ() const;
     void setZ(double value);
 
-private:
+public:
     double X, Y, Z;
 
 

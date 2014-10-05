@@ -4,10 +4,10 @@
 #include "particle.h"
 #include <cstdlib>
 
-const int DEF_SPEED = 2;
+const int DEF_SPEED = 1;
 const int DEF_ACC = 1;
-const int DEF_EMISSION_RATE = 3;
-const double DEF_SPREAD = 0.000005;
+const int DEF_EMISSION_RATE = 1;
+const double DEF_SPREAD = 0.000020;
 class Emitter
 {
 public:
