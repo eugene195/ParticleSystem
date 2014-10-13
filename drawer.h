@@ -11,7 +11,7 @@ class Drawer
 private:
     QGraphicsScene *scene;
 public:
-    Drawer(QGraphicsScene *newScene) { scene = newScene;}
+    Drawer(QGraphicsScene *newScene) : scene(newScene){}
 
     void addPartToCanvas(const ParticleList & particles){
         foreach(Particle * part, particles){

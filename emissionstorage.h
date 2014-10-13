@@ -7,7 +7,6 @@
 
 typedef QList<Particle *> ParticleList;
 
-
 class EmissionStorage
 {
 public:
@@ -16,6 +15,9 @@ public:
     ParticleList emitParticle();
     void moveParticles();
     void applyField(const FieldList & fields);
+    int currentSize(){
+        return particleList.size();
+    }
 
 private:
     Emitter emitter;

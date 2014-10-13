@@ -22,6 +22,10 @@ public:
 private slots:
     void on_pushButton_clicked();
 
+    void on_FieldPlacement_clicked();
+
+    void on_EmitterPlacement_clicked();
+
 public slots:
     void loop()
     {

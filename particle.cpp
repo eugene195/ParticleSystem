@@ -20,7 +20,7 @@ void Particle::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, 
 {
     painter->setBrush(*brush);
     painter->setPen(*pen);
-    int rad = 2;
+    int rad = 3;
 
     painter->drawEllipse(position.getX(), position.getY(), rad, rad);
 }

@@ -7,8 +7,6 @@
 #include "field.h"
 
 
-
-
 class SystemManager
 {
 public:
@@ -21,22 +19,35 @@ public:
 
 
 
-    void initScene(QGraphicsScene *scene){
+    void initScene(QGraphicsScene *scene) {
         drawer = new Drawer(scene);
     }
 
-    void testFill(){
-        EmissionStorage * st = new EmissionStorage(MathVector(100, 100, 100));
-        storages.append(st);
-        Field *fld = new Field(new MathVector(200, 150, 0));
+    void addEmission(const Emitter & emitter) {
+        EmissionStorage * store = new EmissionStorage(emitter);
+        storages.append(store);
+    }
+
+    void addField(Field * fld) {
         fields.append(fld);
     }
 
-    SystemManager() {  }
+    void setMaximumPerStore (int max) {
+        maxPartPerStore = max;
+    }
+
+    void testFill(){
+//        EmissionStorage * st = new EmissionStorage(MathVector(100, 100, 100));
+//        storages.append(st);
+//        Field *fld = new Field(new MathVector(200, 150, 0));
+//        fields.append(fld);
+    }
+
+    SystemManager() { drawer = 0; }
 public slots:
     void loop();
 private:
-
+    int maxPartPerStore;
     StorageList storages;
     FieldList fields;
     Drawer *drawer;
