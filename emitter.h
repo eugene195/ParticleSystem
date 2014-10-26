@@ -53,6 +53,14 @@ public:
         return current + spread - (rand() * spread * 2);
     }
 
+    void changeSpread(int spreadAddition) {
+        spread = (spread + spreadAddition) / DEFAULT_SPREAD_MODIFIER;
+    }
+
+    void changeRate(int rateAddition) {
+        emissionRate = rateAddition;
+    }
+
 private:
     MathVector acceleration;
     MathVector position;
