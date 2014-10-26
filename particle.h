@@ -7,17 +7,21 @@
 #include "mathvector.h"
 #include "field.h"
 
-const unsigned DEFAULT_COLOR_ALPHA = 255;
-
 class Particle : public QGraphicsItem
 {
 public:
     Particle();
-    Particle(MathVector initSpeed, MathVector initAcc, double initMass, MathVector initPos, QColor initColor = Qt::blue, int initLifeTime = 255)
-        : speed(initSpeed), acceleration(initAcc), mass(initMass),  position(initPos), color(initColor), lifeTime(initLifeTime)
+    Particle(
+            MathVector initSpeed, MathVector initAcc,
+             double initMass, MathVector initPos,
+             QColor initColor = QColor(0, 0, 255, 255), int initLifeTime = 255
+            )
+        : speed(initSpeed), acceleration(initAcc),
+          mass(initMass),  position(initPos),
+          color(initColor), lifeTime(initLifeTime)
     {
-        brush = new QBrush(color);
-        pen = new QPen(color);
+        brush = new QBrush(initColor);
+        pen = new QPen(initColor);
     }
 
     QRectF boundingRect() const;
@@ -25,6 +29,8 @@ public:
     void applyField(const FieldList &fldlst);
     void advance()
     {
+        --lifeTime;
+
         speed = speed + acceleration;
         position = position + speed;
     }
@@ -38,6 +44,10 @@ public:
     }
     double getZ(){
         return position.getZ();
+    }
+
+    bool isAlive() const {
+        return lifeTime > 0;
     }
 
     int getLifeTime() const{

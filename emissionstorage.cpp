@@ -3,7 +3,7 @@
 ParticleList EmissionStorage::emitParticle()
 {
     ParticleList newList;
-    newList = emitter.emitParticles();
+    newList = emitter->emitParticles();
 
     foreach (Particle * newPart, newList) {
         particleList.append(newPart);
@@ -14,7 +14,12 @@ ParticleList EmissionStorage::emitParticle()
 void EmissionStorage::moveParticles()
 {
     foreach(Particle * part, particleList){
-        part->advance();
+        if (part->isAlive())
+            part->advance();
+        else {
+            partToDelete.append(part);
+            particleList.removeOne(part);
+        }
     }
 }
 

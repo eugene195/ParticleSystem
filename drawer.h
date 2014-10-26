@@ -4,7 +4,7 @@
 #include <QPointF>
 #include <QGraphicsScene>
 #include "emissionstorage.h"
-
+#include <QDebug>
 class Drawer
 {
 
@@ -16,6 +16,15 @@ public:
     void addPartToCanvas(const ParticleList & particles){
         foreach(Particle * part, particles){
             scene->addItem(part);
+        }
+    }
+
+    void deletePartFromCanvas(ParticleList & particles) {
+        foreach(Particle * part, particles){
+            scene->removeItem(part);
+            delete part;
+//            delete part;
+//            part = 0;
         }
     }
 

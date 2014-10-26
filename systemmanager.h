@@ -23,24 +23,13 @@ public:
         drawer = new Drawer(scene);
     }
 
-    void addEmission(const Emitter & emitter) {
+    void addEmission(Emitter * emitter) {
         EmissionStorage * store = new EmissionStorage(emitter);
         storages.append(store);
     }
 
     void addField(Field * fld) {
         fields.append(fld);
-    }
-
-    void setMaximumPerStore (int max) {
-        maxPartPerStore = max;
-    }
-
-    void testFill(){
-//        EmissionStorage * st = new EmissionStorage(MathVector(100, 100, 100));
-//        storages.append(st);
-//        Field *fld = new Field(new MathVector(200, 150, 0));
-//        fields.append(fld);
     }
 
     SystemManager() { drawer = 0; }

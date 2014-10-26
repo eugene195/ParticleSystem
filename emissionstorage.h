@@ -10,18 +10,30 @@ typedef QList<Particle *> ParticleList;
 class EmissionStorage
 {
 public:
-    EmissionStorage(Emitter initialEmit) : emitter(initialEmit), particleList(QList<Particle *>()) {}
-    EmissionStorage(MathVector emitterPos) : emitter(Emitter(emitterPos)), particleList(QList<Particle *>()) {}
+    EmissionStorage(Emitter * initialEmit) : emitter(initialEmit), particleList(QList<Particle *>()) {}
+    EmissionStorage(MathVector emitterPos) : emitter(new Emitter(emitterPos)), particleList(QList<Particle *>()) {}
     ParticleList emitParticle();
     void moveParticles();
     void applyField(const FieldList & fields);
-    int currentSize(){
+    int currentSize() {
         return particleList.size();
+    }
+    int deletionSize() {
+        return partToDelete.size();
+    }
+
+    ParticleList getPartToDelete() {
+        return partToDelete;
+    }
+
+    void clearDeletedParts() {
+        partToDelete.clear();
     }
 
 private:
-    Emitter emitter;
+    Emitter * emitter;
     ParticleList particleList;
+    ParticleList partToDelete;
 };
 
 typedef QList<EmissionStorage *> StorageList;

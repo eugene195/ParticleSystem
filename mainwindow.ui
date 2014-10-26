@@ -19,12 +19,12 @@
      <rect>
       <x>20</x>
       <y>20</y>
-      <width>751</width>
-      <height>501</height>
+      <width>711</width>
+      <height>441</height>
      </rect>
     </property>
    </widget>
-   <widget class="QWidget" name="">
+   <widget class="QWidget" name="layoutWidget">
     <property name="geometry">
      <rect>
       <x>780</x>
@@ -59,36 +59,6 @@
       </layout>
      </item>
      <item>
-      <spacer name="verticalSpacer_6">
-       <property name="orientation">
-        <enum>Qt::Vertical</enum>
-       </property>
-       <property name="sizeHint" stdset="0">
-        <size>
-         <width>20</width>
-         <height>18</height>
-        </size>
-       </property>
-      </spacer>
-     </item>
-     <item>
-      <widget class="QLabel" name="label_9">
-       <property name="text">
-        <string>Maximum particles per storage</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QSpinBox" name="PartPerStorage">
-       <property name="maximum">
-        <number>1000</number>
-       </property>
-       <property name="value">
-        <number>300</number>
-       </property>
-      </widget>
-     </item>
-     <item>
       <spacer name="verticalSpacer_7">
        <property name="orientation">
         <enum>Qt::Vertical</enum>
@@ -103,6 +73,9 @@
      </item>
      <item>
       <widget class="QToolBox" name="toolBox">
+       <property name="lineWidth">
+        <number>5</number>
+       </property>
        <property name="currentIndex">
         <number>0</number>
        </property>
@@ -112,7 +85,7 @@
           <x>0</x>
           <y>0</y>
           <width>228</width>
-          <height>255</height>
+          <height>310</height>
          </rect>
         </property>
         <attribute name="label">
@@ -237,11 +210,17 @@
                 </widget>
                </item>
                <item>
-                <widget class="QSpinBox" name="EmitterSpeed">
+                <widget class="QSpinBox" name="EmitterSpeedX">
                  <property name="value">
                   <number>2</number>
                  </property>
                 </widget>
+               </item>
+               <item>
+                <widget class="QSpinBox" name="EmitterSpeedY"/>
+               </item>
+               <item>
+                <widget class="QSpinBox" name="EmitterSpeedZ"/>
                </item>
               </layout>
              </item>
@@ -255,7 +234,13 @@
                 </widget>
                </item>
                <item>
-                <widget class="QSpinBox" name="EmitterAcceleration"/>
+                <widget class="QSpinBox" name="EmitterAccX"/>
+               </item>
+               <item>
+                <widget class="QSpinBox" name="EmitterAccY"/>
+               </item>
+               <item>
+                <widget class="QSpinBox" name="EmitterAccZ"/>
                </item>
               </layout>
              </item>
@@ -264,7 +249,7 @@
                <item>
                 <widget class="QLabel" name="label_5">
                  <property name="text">
-                  <string>Rate</string>
+                  <string>Emission Rate</string>
                  </property>
                 </widget>
                </item>
@@ -295,7 +280,7 @@
            <item>
             <widget class="QLabel" name="label_8">
              <property name="text">
-              <string>Spread</string>
+              <string>Spread %</string>
              </property>
             </widget>
            </item>
@@ -322,8 +307,8 @@
          <rect>
           <x>0</x>
           <y>0</y>
-          <width>271</width>
-          <height>317</height>
+          <width>228</width>
+          <height>208</height>
          </rect>
         </property>
         <attribute name="label">
@@ -462,6 +447,26 @@
       </widget>
      </item>
     </layout>
+   </widget>
+   <widget class="QListWidget" name="EmitterList">
+    <property name="geometry">
+     <rect>
+      <x>630</x>
+      <y>470</y>
+      <width>271</width>
+      <height>131</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QListWidget" name="FieldList">
+    <property name="geometry">
+     <rect>
+      <x>360</x>
+      <y>470</y>
+      <width>201</width>
+      <height>131</height>
+     </rect>
+    </property>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menuBar">

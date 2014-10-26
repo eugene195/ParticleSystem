@@ -8,15 +8,23 @@ const int DEF_SPEED = 2;
 const int DEF_ACC = 1;
 const int DEF_EMISSION_RATE = 3;
 const double DEF_SPREAD = 5;
+const int DEFAULT_LIFETIME = 100;
+const unsigned DEFAULT_RED = 0;
+const unsigned DEFAULT_GREEN = 0;
+const unsigned DEFAULT_BLUE = 0;
+const unsigned DEFAULT_TRANSPARENCY = 25;
+const int DEFAULT_SPREAD_MODIFIER = 1000000;
+
 class Emitter
 {
 public:
-    Emitter(MathVector initPos = MathVector()
+    Emitter(MathVector initAcc = MathVector()
+            , MathVector initPos = MathVector()
             , MathVector initSpeed = MathVector(DEF_SPEED, DEF_SPEED, 0)
             , double initSpread = DEF_SPREAD
             , QColor initColor = Qt::blue
             , int initEmissionRate = DEF_EMISSION_RATE)
-        : position(initPos), speed(initSpeed), spread(initSpread / 1000000), drawColor(initColor), emissionRate(initEmissionRate) {}
+        : acceleration(initAcc), position(initPos), speed(initSpeed), spread(initSpread / DEFAULT_SPREAD_MODIFIER), drawColor(initColor), emissionRate(initEmissionRate) {}
 
     QList<Particle *> emitParticles(){
         QList<Particle *> newParticles;
@@ -25,32 +33,28 @@ public:
         return newParticles;
     }
 
+    static QColor createColor(int transparency) {
+        return QColor(DEFAULT_RED, DEFAULT_GREEN, DEFAULT_BLUE, transparency);
+    }
+
     Particle * createParticle(){
         MathVector angle(randomAngle(speed.getAngle().getX()), randomAngle(speed.getAngle().getY()), randomAngle(speed.getAngle().getZ()));
         double length = speed.getLen();
         MathVector newPos = position;
         MathVector newSpeed = MathVector::fromAngle(angle, length);
-
-        int m1 = 0;
-        int m2 = 2;
-        int out = m1 + (rand() % (int)(m2 - m1 + 1));
-        QColor col;
-        if(out == 0)
-            col = Qt::blue;
-        else if(out == 1)
-            col = Qt::green;
-        else
-            col = Qt::red;
-
-
-        return new Particle(newSpeed, MathVector(), initMass , newPos, col); // InitMass
+        int lifetime = randomLifeTime();
+        return new Particle(newSpeed, MathVector(), initMass , newPos, createColor(DEFAULT_TRANSPARENCY), lifetime);
     }
 
+    int randomLifeTime() {
+        return DEFAULT_LIFETIME + rand() % (int)(DEFAULT_LIFETIME / 2);
+    }
     double randomAngle(double current){
         return current + spread - (rand() * spread * 2);
     }
 
 private:
+    MathVector acceleration;
     MathVector position;
     MathVector speed;
     double spread;

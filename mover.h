@@ -7,7 +7,7 @@ class Mover
 {
 public:
     Mover();
-    static void move(StorageList & storages, const FieldList & fields){
+    static void move(StorageList & storages, const FieldList & fields) {
         foreach(EmissionStorage * storage, storages){
             storage->applyField(fields);
             storage->moveParticles();
