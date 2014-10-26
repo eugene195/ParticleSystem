@@ -22,9 +22,17 @@ public:
 private slots:
     void on_pushButton_clicked();
 
-    void on_FieldPlacement_clicked();
+    void on_FieldPlacement_2_clicked();
 
     void on_EmitterPlacement_clicked();
+
+    void on_EmissionRateSlider_sliderMoved(int position);
+
+    void on_EmissionRateSlider_valueChanged(int value);
+
+    void on_EmissionSpreadSlider_valueChanged(int value);
+
+    void on_FieldPowerSlider_valueChanged(int value);
 
 public slots:
     void loop()

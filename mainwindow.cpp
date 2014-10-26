@@ -23,12 +23,12 @@ void MainWindow::on_pushButton_clicked()
     srand (time(NULL));
 }
 
-void MainWindow::on_FieldPlacement_clicked()
+void MainWindow::on_FieldPlacement_2_clicked()
 {
     MathVector * position = new MathVector(ui->FieldX->value(),
                                      ui->FieldY->value(),
                                      ui->FieldZ->value());
-    int mass = ui->FieldMass->value();
+    int mass = ui->FieldMass_2->value();
     Field * fld = new Field(position, mass);
     manager.addField(fld);            
     QString positionStr = "(" + QString::number(position->getX()) + ", " +
@@ -61,4 +61,30 @@ void MainWindow::on_EmitterPlacement_clicked()
                        QString::number(position.getY()) + ", " +
                        QString::number(position.getZ()) + ")";
     ui->EmitterList->addItem("Emitter position: " + positionStr);
+    ui->EmitterList->setCurrentRow(ui->EmitterList->count());
+}
+
+void MainWindow::on_EmissionRateSlider_sliderMoved(int position)
+{
+
+}
+
+
+//Exception here
+void MainWindow::on_EmissionRateSlider_valueChanged(int value)
+{
+    int emitNum = ui->EmitterList->currentRow();
+    manager.changeForEmission(emitNum, "emissionRate", value);
+}
+
+void MainWindow::on_EmissionSpreadSlider_valueChanged(int value)
+{
+    int emitNum = ui->EmitterList->currentRow();
+    manager.changeForEmission(emitNum, "spread", value);
+}
+
+void MainWindow::on_FieldPowerSlider_valueChanged(int value)
+{
+    int fieldNum = ui->FieldList->currentRow();
+    manager.changeForField(fieldNum, "power", value);
 }

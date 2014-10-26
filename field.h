@@ -3,14 +3,14 @@
 
 #include "mathvector.h"
 
-const int DEF_MASS = 20;
+const int DEF_POWER = 20;
 
 class Field
 {
 public:
-    Field(MathVector * coordinates, double newMass = DEF_MASS){
+    Field(MathVector * coordinates, double newPower = DEF_POWER){
         position = coordinates;
-        mass = newMass;
+        power = newPower;
     }
 
 
@@ -18,13 +18,18 @@ public:
         return *position;
     }
 
-    double getMass() const {
-        return mass;
+    double getPower() const {
+        return power;
+    }
+
+    void changeField(QString parameter, double value) {
+        if (parameter == "power")
+            power = value;
     }
 
 private:
     MathVector * position;
-    double mass;
+    double power;
 };
 
 typedef QList<Field *> FieldList;

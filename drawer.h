@@ -23,14 +23,7 @@ public:
         foreach(Particle * part, particles){
             scene->removeItem(part);
             delete part;
-//            delete part;
-//            part = 0;
         }
-    }
-
-    void exec(){
-        scene->advance();
-        scene->update();
     }
 };
 #endif // DRAWER_H

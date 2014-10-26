@@ -30,6 +30,13 @@ public:
         partToDelete.clear();
     }
 
+    void changeEmitterField(int value, QString field) {
+        if (field == "emissionRate")
+            emitter->changeRate(value);
+        else
+            emitter->changeSpread(value);
+    }
+
 private:
     Emitter * emitter;
     ParticleList particleList;

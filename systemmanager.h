@@ -32,6 +32,14 @@ public:
         fields.append(fld);
     }
 
+    void changeForEmission(int emission, QString parameter, int value) {
+        storages[emission]->changeEmitterField(value, parameter);
+    }
+
+    void changeForField(int field, QString parameter, int value) {
+        fields[field]->changeField(parameter, value);
+    }
+
     SystemManager() { drawer = 0; }
 public slots:
     void loop();

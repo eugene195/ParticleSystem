@@ -20,6 +20,5 @@ void SystemManager::loop()
                 storage->clearDeletedParts();
             }
         }
-        drawer->exec();
     }
 }
