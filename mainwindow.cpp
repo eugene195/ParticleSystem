@@ -30,7 +30,7 @@ void MainWindow::on_FieldPlacement_2_clicked()
                                      ui->FieldZ->value());
     int mass = ui->FieldMass_2->value();
     Field * fld = new Field(position, mass);
-    manager.addField(fld);            
+    manager.addField(fld);
     QString positionStr = "(" + QString::number(position->getX()) + ", " +
                        QString::number(position->getY()) + ", " +
                        QString::number(position->getZ()) + ")";
