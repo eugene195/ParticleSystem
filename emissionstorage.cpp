@@ -1,8 +1,8 @@
 #include "emissionstorage.h"
 
-ParticleList EmissionStorage::emitParticle()
+ParticleVector EmissionStorage::emitParticle()
 {
-    ParticleList newList;
+    ParticleVector newList;
     newList = emitter->emitParticles();
 
     foreach (Particle * newPart, newList) {
@@ -13,14 +13,25 @@ ParticleList EmissionStorage::emitParticle()
 
 void EmissionStorage::moveParticles()
 {
-    foreach(Particle * part, particleList){
-        if (part->isAlive())
-            part->advance();
+    int size = particleList.size();
+    for (int i = 0; i < size; ++i) {
+        if (particleList[i]->isAlive())
+            particleList[i]->advance();
         else {
-            partToDelete.append(part);
-            particleList.removeOne(part);
+            partToDelete.append(particleList[i]);
+            particleList.removeAt(i);
+            --i;
+            --size;
         }
     }
+//    foreach(Particle * part, particleList){
+//        if (part->isAlive())
+//            part->advance();
+//        else {
+//            partToDelete.append(part);
+//            particleList.removeOne(part);
+//        }
+//    }
 }
 
 void EmissionStorage::applyField(const FieldList &fields)

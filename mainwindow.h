@@ -34,6 +34,8 @@ private slots:
 
     void on_FieldPowerSlider_valueChanged(int value);
 
+    void on_EmitterLifetimeSlider_valueChanged(int value);
+
 public slots:
     void loop()
     {

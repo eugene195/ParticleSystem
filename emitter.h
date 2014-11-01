@@ -15,6 +15,8 @@ const unsigned DEFAULT_BLUE = 0;
 const unsigned DEFAULT_TRANSPARENCY = 25;
 const int DEFAULT_SPREAD_MODIFIER = 1000000;
 
+typedef QVector<Particle *> ParticleVector;
+
 class Emitter
 {
 public:
@@ -23,11 +25,14 @@ public:
             , MathVector initSpeed = MathVector(DEF_SPEED, DEF_SPEED, 0)
             , double initSpread = DEF_SPREAD
             , QColor initColor = Qt::blue
-            , int initEmissionRate = DEF_EMISSION_RATE)
-        : acceleration(initAcc), position(initPos), speed(initSpeed), spread(initSpread / DEFAULT_SPREAD_MODIFIER), drawColor(initColor), emissionRate(initEmissionRate) {}
+            , int initEmissionRate = DEF_EMISSION_RATE
+            , int initLifetime = DEFAULT_LIFETIME)
+        : acceleration(initAcc), position(initPos),
+          speed(initSpeed), spread(initSpread / DEFAULT_SPREAD_MODIFIER),
+          drawColor(initColor), emissionRate(initEmissionRate), lifetime(initLifetime) {}
 
-    QList<Particle *> emitParticles(){
-        QList<Particle *> newParticles;
+    ParticleVector emitParticles(){
+        ParticleVector newParticles;
         for(int i = 0; i < emissionRate; ++i)
             newParticles.append(createParticle());
         return newParticles;
@@ -43,11 +48,11 @@ public:
         MathVector newPos = position;
         MathVector newSpeed = MathVector::fromAngle(angle, length);
         int lifetime = randomLifeTime();
-        return new Particle(newSpeed, MathVector(), initMass , newPos, createColor(DEFAULT_TRANSPARENCY), lifetime);
+        return new Particle(newSpeed, MathVector(), initMass , newPos, lifetime, createColor(DEFAULT_TRANSPARENCY));
     }
 
     int randomLifeTime() {
-        return DEFAULT_LIFETIME + rand() % (int)(DEFAULT_LIFETIME / 2);
+        return lifetime + rand() % (int)(lifetime / 2);
     }
     double randomAngle(double current){
         return current + spread - (rand() * spread * 2);
@@ -55,6 +60,10 @@ public:
 
     void changeSpread(int spreadAddition) {
         spread = (spread + spreadAddition) / DEFAULT_SPREAD_MODIFIER;
+    }
+
+    void changeLifetime(int newLifetime) {
+        lifetime = newLifetime;
     }
 
     void changeRate(int rateAddition) {
@@ -69,6 +78,7 @@ private:
     QColor drawColor;
     int emissionRate;
     const double initMass = 0.06;
+    int lifetime;
 };
 
 #endif // EMITTER_H

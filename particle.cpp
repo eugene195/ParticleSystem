@@ -11,7 +11,7 @@ void Particle::applyField(const FieldList &fldlst)
     foreach(Field * field, fldlst){
         MathVector distanceToFld = field->getPosition() - this->position;
         double force = (field->getPower() * this->mass) / pow(distanceToFld.getLen(), 1.5);
-        totalAcc = distanceToFld * force;
+        totalAcc = totalAcc + distanceToFld * force;
     }
     this->acceleration = totalAcc;
 }

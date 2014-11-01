@@ -12,10 +12,10 @@ void SystemManager::loop()
         Mover::move(storages, fields);
         // Generate and add to scene
         foreach (EmissionStorage * storage, storages) {
-            ParticleList newParticles = storage->emitParticle();
+            ParticleVector newParticles = storage->emitParticle();
             drawer->addPartToCanvas(newParticles);
             if (storage->deletionSize() > DELETION_TRESHOLD) {
-                ParticleList deletedParticles = storage->getPartToDelete();
+                ParticleVector deletedParticles = storage->getPartToDelete();
                 drawer->deletePartFromCanvas(deletedParticles);
                 storage->clearDeletedParts();
             }

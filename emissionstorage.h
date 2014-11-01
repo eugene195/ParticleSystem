@@ -5,14 +5,14 @@
 #include "field.h"
 #include <QList>
 
-typedef QList<Particle *> ParticleList;
+
 
 class EmissionStorage
 {
 public:
-    EmissionStorage(Emitter * initialEmit) : emitter(initialEmit), particleList(QList<Particle *>()) {}
-    EmissionStorage(MathVector emitterPos) : emitter(new Emitter(emitterPos)), particleList(QList<Particle *>()) {}
-    ParticleList emitParticle();
+    EmissionStorage(Emitter * initialEmit) : emitter(initialEmit), particleList(ParticleVector()) {}
+    EmissionStorage(MathVector emitterPos) : emitter(new Emitter(emitterPos)), particleList(ParticleVector()) {}
+    ParticleVector emitParticle();
     void moveParticles();
     void applyField(const FieldList & fields);
     int currentSize() {
@@ -22,7 +22,7 @@ public:
         return partToDelete.size();
     }
 
-    ParticleList getPartToDelete() {
+    ParticleVector getPartToDelete() {
         return partToDelete;
     }
 
@@ -33,14 +33,16 @@ public:
     void changeEmitterField(int value, QString field) {
         if (field == "emissionRate")
             emitter->changeRate(value);
-        else
+        else if (field == "spread")
             emitter->changeSpread(value);
+        else
+            emitter->changeLifetime(value);
     }
 
 private:
     Emitter * emitter;
-    ParticleList particleList;
-    ParticleList partToDelete;
+    ParticleVector particleList;
+    ParticleVector partToDelete;
 };
 
 typedef QList<EmissionStorage *> StorageList;

@@ -14,7 +14,7 @@ public:
     Particle(
             MathVector initSpeed, MathVector initAcc,
              double initMass, MathVector initPos,
-             QColor initColor = QColor(0, 0, 255, 255), int initLifeTime = 255
+             int initLifeTime, QColor initColor = QColor(0, 0, 255, 255)
             )
         : speed(initSpeed), acceleration(initAcc),
           mass(initMass),  position(initPos),

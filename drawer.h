@@ -13,13 +13,13 @@ private:
 public:
     Drawer(QGraphicsScene *newScene) : scene(newScene){}
 
-    void addPartToCanvas(const ParticleList & particles){
+    void addPartToCanvas(const ParticleVector & particles){
         foreach(Particle * part, particles){
             scene->addItem(part);
         }
     }
 
-    void deletePartFromCanvas(ParticleList & particles) {
+    void deletePartFromCanvas(ParticleVector & particles) {
         foreach(Particle * part, particles){
             scene->removeItem(part);
             delete part;

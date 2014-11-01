@@ -35,6 +35,7 @@ void MainWindow::on_FieldPlacement_2_clicked()
                        QString::number(position->getY()) + ", " +
                        QString::number(position->getZ()) + ")";
     ui->FieldList->addItem("Field position: " + positionStr);
+    ui->FieldList->setCurrentRow(ui->FieldList->count() - 1);
 }
 
 void MainWindow::on_EmitterPlacement_clicked()
@@ -53,15 +54,15 @@ void MainWindow::on_EmitterPlacement_clicked()
 
     double spread = ui->EmitterSpread->value();
     int emissionRate = ui->EmitterRate->value();
-
+    int lifetime = ui->EmitterLifetime->value();
 //    TODO CREATE EMITTERS INSIDE MANAGER
-    Emitter * emitter = new Emitter(acceleration, position, speed, spread, Qt::blue, emissionRate);
+    Emitter * emitter = new Emitter(acceleration, position, speed, spread, Qt::blue, emissionRate, lifetime);
     manager.addEmission(emitter);
     QString positionStr = "(" + QString::number(position.getX()) + ", " +
                        QString::number(position.getY()) + ", " +
                        QString::number(position.getZ()) + ")";
     ui->EmitterList->addItem("Emitter position: " + positionStr);
-    ui->EmitterList->setCurrentRow(ui->EmitterList->count());
+    ui->EmitterList->setCurrentRow(ui->EmitterList->count() - 1);
 }
 
 void MainWindow::on_EmissionRateSlider_sliderMoved(int position)
@@ -87,4 +88,10 @@ void MainWindow::on_FieldPowerSlider_valueChanged(int value)
 {
     int fieldNum = ui->FieldList->currentRow();
     manager.changeForField(fieldNum, "power", value);
+}
+
+void MainWindow::on_EmitterLifetimeSlider_valueChanged(int value)
+{
+    int emitNum = ui->EmitterList->currentRow();
+    manager.changeForEmission(emitNum, "lifetime", value);
 }
