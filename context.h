@@ -3,13 +3,27 @@
 
 #include <QVector>
 
-template <class K>
+typedef std::pair<void *, QString> Pairable;
+
 class Context
 {
 public:
-    Context();
+    Context() { vec.resize(5); }
+    void add(const void * element, const QString val) {
+        Pairable pair(element, val);
+        vec.append(pair);
+    }
+
+    void * get(QString name) const {
+        foreach (Pairable pair, vec) {
+            if (pair.second == name)
+                return pair.first;
+        }
+        return NULL;
+    }
+
 private:
-    QVector<std::pair<K, QString>> vec;
+    QVector<Pairable> vec;
 };
 
 #endif // CONTEXT_H

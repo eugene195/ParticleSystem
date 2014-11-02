@@ -5,15 +5,17 @@
 #include <mathvector.h>
 
 enum RotateDirection { XPOS, XNEG, YPOS, YNEG, ZPOS, ZNEG };
+enum MovementDirection { MVLEFT = 16777234, MVUP, MVRIGHT, MVDOWN };
 
 class SceneMatrix
 {
 public:
     SceneMatrix() {
         currentMatrix.setToIdentity();
-        setAuxMatrices();
+        setAuxParameters();
     }
 
+//    **********************************************
     void rotateZPos() {
         currentMatrix = currentMatrix * rZPositiveMatrix;
     }
@@ -37,22 +39,30 @@ public:
     void rotateXNeg() {
         currentMatrix = currentMatrix * rXNegativeMatrix;
     }
+//    **********************************************
+    void resize(double factor) {
+        setResizeMatrix(factor, resizeMatrix);
+        currentMatrix = currentMatrix * resizeMatrix;
+    }
+//    **********************************************
+    void move(int valX, int valY) {
+        setMovementVector(valX, valY);
+    }
 
+//    **********************************************
     MathVector project(const MathVector & in) const {
         return MathVector
         (
-            in.X * currentMatrix(0, 0) + in.Y * currentMatrix(0, 1) + in.Z * currentMatrix(0, 2),
-            in.X * currentMatrix(1, 0) + in.Y * currentMatrix(1, 1) + in.Z * currentMatrix(1, 2),
-            in.X * currentMatrix(2, 0) + in.Y * currentMatrix(2, 1) + in.Z * currentMatrix(2, 2)
+            in.X * currentMatrix(0, 0) + in.Y * currentMatrix(0, 1) + in.Z * currentMatrix(0, 2) + movementVector.X,
+            in.X * currentMatrix(1, 0) + in.Y * currentMatrix(1, 1) + in.Z * currentMatrix(1, 2) + movementVector.Y,
+            in.X * currentMatrix(2, 0) + in.Y * currentMatrix(2, 1) + in.Z * currentMatrix(2, 2) + movementVector.Z
         );
     }
-
-
-
 
 private:
     QMatrix3x3 currentMatrix;
 
+//    **********************************************
     QMatrix3x3 rXPositiveMatrix;
     QMatrix3x3 rXNegativeMatrix;
 
@@ -61,10 +71,13 @@ private:
 
     QMatrix3x3 rZPositiveMatrix;
     QMatrix3x3 rZNegativeMatrix;
+//    **********************************************
+    QMatrix3x3 resizeMatrix;
+    MathVector movementVector;
 
     const double angle = sin(M_PI / 40);
-
-    void setAuxMatrices() {
+//    **********************************************
+    void setAuxParameters() {
         setXMatrix(angle, rXPositiveMatrix);
         setXMatrix(-angle, rXNegativeMatrix);
 
@@ -73,8 +86,24 @@ private:
 
         setZMatrix(angle, rZPositiveMatrix);
         setZMatrix(-angle, rZNegativeMatrix);
-    }
 
+        movementVector = MathVector(0, 0, 0);
+    }
+//    **********************************************
+    void setResizeMatrix(double factor, QMatrix3x3 & matrixToSet) {
+        float * resize = new float(9);
+        resize = matrixToSet.data();
+        resize[0] = factor, resize[1] = 0,         resize[2] = 0;
+        resize[3] = 0,      resize[4] = factor,    resize[5] = 0;
+        resize[6] = 0,      resize[7] = 0,         resize[8] = factor;
+    }
+//    **********************************************
+    void setMovementVector(int valX, int valY, int valZ = 0) {
+        movementVector.X += valX;
+        movementVector.Y += valY;
+        movementVector.Z += valZ;
+    }
+//    **********************************************
     void setXMatrix(double ang, QMatrix3x3 & matrixToSet) {
         float * rotX = new float(9);
         rotX = matrixToSet.data();

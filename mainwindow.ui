@@ -18,17 +18,23 @@
     <property name="geometry">
      <rect>
       <x>20</x>
-      <y>20</y>
+      <y>0</y>
       <width>1241</width>
-      <height>471</height>
+      <height>501</height>
      </rect>
+    </property>
+    <property name="cursor" stdset="0">
+     <cursorShape>OpenHandCursor</cursorShape>
+    </property>
+    <property name="optimizationFlags">
+     <set>QGraphicsView::DontAdjustForAntialiasing|QGraphicsView::DontClipPainter|QGraphicsView::DontSavePainterState|QGraphicsView::IndirectPainting</set>
     </property>
    </widget>
    <widget class="QTabWidget" name="tabWidget">
     <property name="geometry">
      <rect>
-      <x>40</x>
-      <y>520</y>
+      <x>30</x>
+      <y>550</y>
       <width>767</width>
       <height>191</height>
      </rect>
@@ -70,16 +76,36 @@
             </item>
             <item>
              <widget class="QSpinBox" name="EmitterSpeedX">
+              <property name="minimum">
+               <number>-10</number>
+              </property>
+              <property name="maximum">
+               <number>10</number>
+              </property>
               <property name="value">
                <number>2</number>
               </property>
              </widget>
             </item>
             <item>
-             <widget class="QSpinBox" name="EmitterSpeedY"/>
+             <widget class="QSpinBox" name="EmitterSpeedY">
+              <property name="minimum">
+               <number>-10</number>
+              </property>
+              <property name="maximum">
+               <number>10</number>
+              </property>
+             </widget>
             </item>
             <item>
-             <widget class="QSpinBox" name="EmitterSpeedZ"/>
+             <widget class="QSpinBox" name="EmitterSpeedZ">
+              <property name="minimum">
+               <number>-10</number>
+              </property>
+              <property name="maximum">
+               <number>10</number>
+              </property>
+             </widget>
             </item>
            </layout>
           </item>
@@ -93,13 +119,25 @@
              </widget>
             </item>
             <item>
-             <widget class="QSpinBox" name="EmitterAccX"/>
+             <widget class="QSpinBox" name="EmitterAccX">
+              <property name="maximum">
+               <number>10</number>
+              </property>
+             </widget>
             </item>
             <item>
-             <widget class="QSpinBox" name="EmitterAccY"/>
+             <widget class="QSpinBox" name="EmitterAccY">
+              <property name="maximum">
+               <number>10</number>
+              </property>
+             </widget>
             </item>
             <item>
-             <widget class="QSpinBox" name="EmitterAccZ"/>
+             <widget class="QSpinBox" name="EmitterAccZ">
+              <property name="maximum">
+               <number>10</number>
+              </property>
+             </widget>
             </item>
            </layout>
           </item>
@@ -114,6 +152,12 @@
             </item>
             <item>
              <widget class="QSpinBox" name="EmitterRate">
+              <property name="minimum">
+               <number>1</number>
+              </property>
+              <property name="maximum">
+               <number>10</number>
+              </property>
               <property name="value">
                <number>3</number>
               </property>
@@ -171,7 +215,7 @@
                <enum>QAbstractSpinBox::UpDownArrows</enum>
               </property>
               <property name="maximum">
-               <double>400.000000000000000</double>
+               <double>1001.000000000000000</double>
               </property>
               <property name="singleStep">
                <double>2.000000000000000</double>
@@ -184,7 +228,7 @@
             <item>
              <widget class="QDoubleSpinBox" name="EmitterY">
               <property name="maximum">
-               <double>400.000000000000000</double>
+               <double>501.000000000000000</double>
               </property>
               <property name="singleStep">
                <double>2.000000000000000</double>
@@ -197,7 +241,7 @@
             <item>
              <widget class="QDoubleSpinBox" name="EmitterZ">
               <property name="maximum">
-               <double>400.000000000000000</double>
+               <double>501.000000000000000</double>
               </property>
               <property name="singleStep">
                <double>2.000000000000000</double>
@@ -519,8 +563,8 @@
    <widget class="QPushButton" name="pushButton">
     <property name="geometry">
      <rect>
-      <x>320</x>
-      <y>500</y>
+      <x>840</x>
+      <y>640</y>
       <width>82</width>
       <height>23</height>
      </rect>
@@ -579,6 +623,55 @@
     </property>
     <property name="text">
      <string>RotateXPos</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="resize_plus">
+    <property name="geometry">
+     <rect>
+      <x>870</x>
+      <y>530</y>
+      <width>41</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>20</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>+</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="resize_minus">
+    <property name="geometry">
+     <rect>
+      <x>920</x>
+      <y>530</y>
+      <width>41</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>20</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>-</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="rotateYNeg">
+    <property name="geometry">
+     <rect>
+      <x>1120</x>
+      <y>600</y>
+      <width>75</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>RotateYNeg</string>
     </property>
    </widget>
   </widget>

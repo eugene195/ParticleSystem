@@ -33,11 +33,12 @@ public:
         fields.append(fld);
     }
 
-    void rotateZ(RotateDirection direct) {
-        if (direct == ZPOS)
-            matrix->rotateZPos();
-        else if (direct == ZNEG)
-            matrix->rotateZNeg();
+    void resize(double factor) {
+        matrix->resize(factor);
+    }
+
+    void move(int mvX, int mvY) {
+        matrix->move(mvX, mvY);
     }
 
     void ratateY(RotateDirection direct) {
@@ -52,6 +53,13 @@ public:
             matrix->rotateXPos();
         else if (direct == XNEG)
             matrix->rotateXNeg();
+    }
+
+    void rotateZ(RotateDirection direct) {
+        if (direct == ZPOS)
+            matrix->rotateZPos();
+        else if (direct == ZNEG)
+            matrix->rotateZNeg();
     }
 
     void changeForEmission(int emission, QString parameter, int value) {

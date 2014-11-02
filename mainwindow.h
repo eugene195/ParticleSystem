@@ -4,8 +4,9 @@
 #include <QMainWindow>
 #include <QGraphicsScene>
 #include <QTimer>
+#include <QWheelEvent>
 #include "systemmanager.h"
-
+#include "context.h"
 
 namespace Ui {
 class MainWindow;
@@ -17,6 +18,8 @@ class MainWindow : public QMainWindow
 
 public:
     explicit MainWindow(QWidget *parent = 0);
+    void wheelEvent(QWheelEvent *event);
+    void keyPressEvent(QKeyEvent *event);
     ~MainWindow();
 
 private slots:
@@ -43,6 +46,12 @@ private slots:
     void on_rotateYPos_clicked();
 
     void on_rotateXPos_clicked();
+
+    void on_resize_plus_clicked();
+
+    void on_resize_minus_clicked();
+
+    void on_rotateYNeg_clicked();
 
 public slots:
     void loop()

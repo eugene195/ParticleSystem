@@ -55,9 +55,13 @@ void MainWindow::on_EmitterPlacement_clicked()
     double spread = ui->EmitterSpread->value();
     int emissionRate = ui->EmitterRate->value();
     int lifetime = ui->EmitterLifetime->value();
-//    TODO CREATE EMITTERS INSIDE MANAGER
 
+    //    USE CONTEXT
 
+    Context context;
+    context.add(&acceleration, QString("acceleration"));
+
+    MathVector newAcc = *(MathVector *)context.get("acceleration");
     manager.addEmission(acceleration, position, speed, spread, Qt::blue, emissionRate, lifetime);
 
 
@@ -71,6 +75,33 @@ void MainWindow::on_EmitterPlacement_clicked()
 void MainWindow::on_EmissionRateSlider_sliderMoved(int position)
 {
 
+}
+
+void MainWindow::wheelEvent(QWheelEvent *event) {
+    QPoint numDegrees = event->angleDelta();
+    double factor = 1;
+    if (numDegrees.y() < 0)
+        factor = 0.7;
+    else if (numDegrees.y() > 0)
+        factor = 1.2;
+    manager.resize(factor);
+}
+
+
+// Movement - ASWD
+void MainWindow::keyPressEvent(QKeyEvent *event) {
+    int key = event->key();
+    int valX, valY;
+    valX = valY = 0;
+    if (key == 65)
+        valX = +10;
+    else if (key == 87)
+        valY = 10;
+    else if (key == 68)
+        valX = -10;
+    else if (key == 83)
+        valY = -10;
+    manager.move(valX, valY);
 }
 
 
@@ -114,7 +145,26 @@ void MainWindow::on_rotateYPos_clicked()
     manager.ratateY(YPOS);
 }
 
+void MainWindow::on_rotateYNeg_clicked()
+{
+     manager.ratateY(YNEG);
+}
+
 void MainWindow::on_rotateXPos_clicked()
 {
     manager.rotateX(XPOS);
 }
+
+void MainWindow::on_resize_plus_clicked()
+{
+    double factor = 1.3;
+    manager.resize(factor);
+}
+
+void MainWindow::on_resize_minus_clicked()
+{
+    double factor = 0.7;
+    manager.resize(factor);
+}
+
+
