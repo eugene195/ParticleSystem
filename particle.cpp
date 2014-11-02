@@ -2,7 +2,7 @@
 
 QRectF Particle::boundingRect() const
 {
-    return QRectF(0, 0, 500, 500);
+    return QRectF(-500, -500, 1000, 1000);
 }
 
 void Particle::applyField(const FieldList &fldlst)
@@ -21,6 +21,8 @@ void Particle::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, 
     painter->setBrush(*brush);
     painter->setPen(*pen);
     int rad = 3;
-
-    painter->drawEllipse(position.getX(), position.getY(), rad, rad);
+//    qDebug() << position.X;
+    MathVector projected = matrix->project(position);
+//    qDebug() << projected.X;
+    painter->drawEllipse(projected.X, projected.Y, rad, rad);
 }

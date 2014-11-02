@@ -31,9 +31,9 @@ void MainWindow::on_FieldPlacement_2_clicked()
     int mass = ui->FieldMass_2->value();
     Field * fld = new Field(position, mass);
     manager.addField(fld);
-    QString positionStr = "(" + QString::number(position->getX()) + ", " +
-                       QString::number(position->getY()) + ", " +
-                       QString::number(position->getZ()) + ")";
+    QString positionStr = "(" + QString::number(position->X) + ", " +
+                       QString::number(position->Y) + ", " +
+                       QString::number(position->Z) + ")";
     ui->FieldList->addItem("Field position: " + positionStr);
     ui->FieldList->setCurrentRow(ui->FieldList->count() - 1);
 }
@@ -56,11 +56,14 @@ void MainWindow::on_EmitterPlacement_clicked()
     int emissionRate = ui->EmitterRate->value();
     int lifetime = ui->EmitterLifetime->value();
 //    TODO CREATE EMITTERS INSIDE MANAGER
-    Emitter * emitter = new Emitter(acceleration, position, speed, spread, Qt::blue, emissionRate, lifetime);
-    manager.addEmission(emitter);
-    QString positionStr = "(" + QString::number(position.getX()) + ", " +
-                       QString::number(position.getY()) + ", " +
-                       QString::number(position.getZ()) + ")";
+
+
+    manager.addEmission(acceleration, position, speed, spread, Qt::blue, emissionRate, lifetime);
+
+
+    QString positionStr = "(" + QString::number(position.X) + ", " +
+                       QString::number(position.Y) + ", " +
+                       QString::number(position.Z) + ")";
     ui->EmitterList->addItem("Emitter position: " + positionStr);
     ui->EmitterList->setCurrentRow(ui->EmitterList->count() - 1);
 }
@@ -94,4 +97,24 @@ void MainWindow::on_EmitterLifetimeSlider_valueChanged(int value)
 {
     int emitNum = ui->EmitterList->currentRow();
     manager.changeForEmission(emitNum, "lifetime", value);
+}
+
+void MainWindow::on_rotateZPos_clicked()
+{
+    manager.rotateZ(ZPOS);
+}
+
+void MainWindow::on_rotateZNeg_clicked()
+{
+    manager.rotateZ(ZNEG);
+}
+
+void MainWindow::on_rotateYPos_clicked()
+{
+    manager.ratateY(YPOS);
+}
+
+void MainWindow::on_rotateXPos_clicked()
+{
+    manager.rotateX(XPOS);
 }

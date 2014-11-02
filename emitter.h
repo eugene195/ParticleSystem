@@ -20,8 +20,9 @@ typedef QVector<Particle *> ParticleVector;
 class Emitter
 {
 public:
-    Emitter(MathVector initAcc = MathVector()
+    Emitter(  MathVector initAcc = MathVector()
             , MathVector initPos = MathVector()
+            , SceneMatrix * initScene = new SceneMatrix()
             , MathVector initSpeed = MathVector(DEF_SPEED, DEF_SPEED, 0)
             , double initSpread = DEF_SPREAD
             , QColor initColor = Qt::blue
@@ -29,10 +30,12 @@ public:
             , int initLifetime = DEFAULT_LIFETIME)
         : acceleration(initAcc), position(initPos),
           speed(initSpeed), spread(initSpread / DEFAULT_SPREAD_MODIFIER),
-          drawColor(initColor), emissionRate(initEmissionRate), lifetime(initLifetime) {}
+          drawColor(initColor), emissionRate(initEmissionRate),
+          lifetime(initLifetime), matrix(initScene) {}
 
     ParticleVector emitParticles(){
         ParticleVector newParticles;
+
         for(int i = 0; i < emissionRate; ++i)
             newParticles.append(createParticle());
         return newParticles;
@@ -43,12 +46,12 @@ public:
     }
 
     Particle * createParticle(){
-        MathVector angle(randomAngle(speed.getAngle().getX()), randomAngle(speed.getAngle().getY()), randomAngle(speed.getAngle().getZ()));
+        MathVector angle(randomAngle(speed.getAngle().X), randomAngle(speed.getAngle().Y), randomAngle(speed.getAngle().Z));
         double length = speed.getLen();
         MathVector newPos = position;
         MathVector newSpeed = MathVector::fromAngle(angle, length);
         int lifetime = randomLifeTime();
-        return new Particle(newSpeed, MathVector(), initMass , newPos, lifetime, createColor(DEFAULT_TRANSPARENCY));
+        return new Particle(newSpeed, MathVector(), initMass , newPos, matrix, lifetime, createColor(DEFAULT_TRANSPARENCY));
     }
 
     int randomLifeTime() {
@@ -79,6 +82,8 @@ private:
     int emissionRate;
     const double initMass = 0.06;
     int lifetime;
+
+    SceneMatrix * matrix;
 };
 
 #endif // EMITTER_H

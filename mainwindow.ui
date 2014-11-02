@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1076</width>
-    <height>655</height>
+    <width>1277</width>
+    <height>801</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -19,16 +19,16 @@
      <rect>
       <x>20</x>
       <y>20</y>
-      <width>691</width>
-      <height>341</height>
+      <width>1241</width>
+      <height>471</height>
      </rect>
     </property>
    </widget>
    <widget class="QTabWidget" name="tabWidget">
     <property name="geometry">
      <rect>
-      <x>10</x>
-      <y>400</y>
+      <x>40</x>
+      <y>520</y>
       <width>767</width>
       <height>191</height>
      </rect>
@@ -256,6 +256,12 @@
             </item>
             <item>
              <widget class="QSlider" name="EmissionRateSlider">
+              <property name="minimumSize">
+               <size>
+                <width>0</width>
+                <height>20</height>
+               </size>
+              </property>
               <property name="minimum">
                <number>1</number>
               </property>
@@ -283,6 +289,18 @@
             </item>
             <item>
              <widget class="QSlider" name="EmissionSpreadSlider">
+              <property name="minimumSize">
+               <size>
+                <width>0</width>
+                <height>20</height>
+               </size>
+              </property>
+              <property name="baseSize">
+               <size>
+                <width>0</width>
+                <height>0</height>
+               </size>
+              </property>
               <property name="minimum">
                <number>1</number>
               </property>
@@ -303,8 +321,14 @@
             </item>
             <item>
              <widget class="QSlider" name="EmitterLifetimeSlider">
+              <property name="minimumSize">
+               <size>
+                <width>0</width>
+                <height>20</height>
+               </size>
+              </property>
               <property name="minimum">
-               <number>1</number>
+               <number>10</number>
               </property>
               <property name="maximum">
                <number>500</number>
@@ -495,8 +519,8 @@
    <widget class="QPushButton" name="pushButton">
     <property name="geometry">
      <rect>
-      <x>290</x>
-      <y>380</y>
+      <x>320</x>
+      <y>500</y>
       <width>82</width>
       <height>23</height>
      </rect>
@@ -505,13 +529,65 @@
      <string>Start simulation</string>
     </property>
    </widget>
+   <widget class="QPushButton" name="rotateZPos">
+    <property name="geometry">
+     <rect>
+      <x>1030</x>
+      <y>570</y>
+      <width>75</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>RotateZPos</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="rotateYPos">
+    <property name="geometry">
+     <rect>
+      <x>1030</x>
+      <y>600</y>
+      <width>75</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>RotateYPos</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="rotateZNeg">
+    <property name="geometry">
+     <rect>
+      <x>1120</x>
+      <y>570</y>
+      <width>75</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>RotateZNeg</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="rotateXPos">
+    <property name="geometry">
+     <rect>
+      <x>1030</x>
+      <y>630</y>
+      <width>75</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>RotateXPos</string>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menuBar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1076</width>
+     <width>1277</width>
      <height>21</height>
     </rect>
    </property>

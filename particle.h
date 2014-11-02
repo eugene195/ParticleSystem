@@ -4,7 +4,7 @@
 
 #include <QGraphicsItem>
 #include <QPainter>
-#include "mathvector.h"
+#include "scenematrix.h"
 #include "field.h"
 
 class Particle : public QGraphicsItem
@@ -12,13 +12,15 @@ class Particle : public QGraphicsItem
 public:
     Particle();
     Particle(
-            MathVector initSpeed, MathVector initAcc,
+             MathVector initSpeed, MathVector initAcc,
              double initMass, MathVector initPos,
-             int initLifeTime, QColor initColor = QColor(0, 0, 255, 255)
-            )
-        : speed(initSpeed), acceleration(initAcc),
+             SceneMatrix * newMatrix, int initLifeTime,
+             QColor initColor = QColor(0, 0, 255, 255)
+            ) :
+          speed(initSpeed), acceleration(initAcc),
           mass(initMass),  position(initPos),
-          color(initColor), lifeTime(initLifeTime)
+          color(initColor), lifeTime(initLifeTime),
+          matrix(newMatrix)
     {
         brush = new QBrush(initColor);
         pen = new QPen(initColor);
@@ -36,14 +38,17 @@ public:
     }
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option,
                QWidget *widget);
-    double getX(){
-        return position.getX();
+
+    double X() const {
+        return position.X;
     }
-    double getY(){
-        return position.getY();
+
+    double Y() const {
+        return position.Y;
     }
-    double getZ(){
-        return position.getZ();
+
+    double Z() const {
+        return position.Z;
     }
 
     bool isAlive() const {
@@ -67,8 +72,10 @@ private:
 
     QPen *pen;
     QBrush *brush;
-    // STILL NOT USED
     int lifeTime;
+    //    It is very unnecessary
+    SceneMatrix * matrix;
+
 
 
 };

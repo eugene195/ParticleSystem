@@ -20,7 +20,8 @@ SOURCES += main.cpp\
     drawer.cpp \
     mathvector.cpp \
     systemmanager.cpp \
-    mover.cpp
+    mover.cpp \
+    scenematrix.cpp
 
 HEADERS  += mainwindow.h \
     particle.h \
@@ -30,6 +31,8 @@ HEADERS  += mainwindow.h \
     mathvector.h \
     systemmanager.h \
     mover.h \
-    field.h
+    field.h \
+    scenematrix.h \
+    context.h
 
 FORMS    += mainwindow.ui

@@ -36,6 +36,14 @@ private slots:
 
     void on_EmitterLifetimeSlider_valueChanged(int value);
 
+    void on_rotateZPos_clicked();
+
+    void on_rotateZNeg_clicked();
+
+    void on_rotateYPos_clicked();
+
+    void on_rotateXPos_clicked();
+
 public slots:
     void loop()
     {

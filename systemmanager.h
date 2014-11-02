@@ -23,13 +23,35 @@ public:
         drawer = new Drawer(scene);
     }
 
-    void addEmission(Emitter * emitter) {
+    void addEmission(MathVector & acceleration, MathVector & position, MathVector & speed, double spread, QColor color, int rate, int lifetime) {
+        Emitter * emitter = new Emitter(acceleration, position, matrix, speed, spread, color, rate, lifetime);
         EmissionStorage * store = new EmissionStorage(emitter);
         storages.append(store);
     }
 
     void addField(Field * fld) {
         fields.append(fld);
+    }
+
+    void rotateZ(RotateDirection direct) {
+        if (direct == ZPOS)
+            matrix->rotateZPos();
+        else if (direct == ZNEG)
+            matrix->rotateZNeg();
+    }
+
+    void ratateY(RotateDirection direct) {
+        if (direct == YPOS)
+            matrix->rotateYPos();
+        else if (direct == YNEG)
+            matrix->rotateYNeg();
+    }
+
+    void rotateX(RotateDirection direct) {
+        if (direct == XPOS)
+            matrix->rotateXPos();
+        else if (direct == XNEG)
+            matrix->rotateXNeg();
     }
 
     void changeForEmission(int emission, QString parameter, int value) {
@@ -40,7 +62,7 @@ public:
         fields[field]->changeField(parameter, value);
     }
 
-    SystemManager() { drawer = 0; }
+    SystemManager() { drawer = 0; matrix = new SceneMatrix(); }
 public slots:
     void loop();
 private:
@@ -48,7 +70,7 @@ private:
     StorageList storages;
     FieldList fields;
     Drawer *drawer;
-
+    SceneMatrix * matrix;
 };
 
 #endif // EMISSIONMANAGER_H

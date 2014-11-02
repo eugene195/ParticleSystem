@@ -59,19 +59,9 @@ public:
     }
 
     static MathVector fromAngle(const MathVector & angle, double length){
-        return MathVector(length * cos(angle.getX()), length * sin(angle.getX()), length * sin(angle.getZ()));
+        return MathVector(length * cos(angle.X), length * sin(angle.X), length * sin(angle.Z));
     }
 
-    double getX() const;
-    void setX(double value);
-
-    double getY() const;
-    void setY(double value);
-
-    double getZ() const;
-    void setZ(double value);
-
-private:
     double X, Y, Z;
 
 
