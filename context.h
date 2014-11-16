@@ -9,7 +9,7 @@ class Context
 {
 public:
     Context() { vec.resize(5); }
-    void add(const void * element, const QString val) {
+    void add(void * element, const QString val) {
         Pairable pair(element, val);
         vec.append(pair);
     }

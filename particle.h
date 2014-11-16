@@ -6,6 +6,7 @@
 #include <QPainter>
 #include "scenematrix.h"
 #include "field.h"
+#include "quaternion.h"
 
 class Particle : public QGraphicsItem
 {
@@ -24,6 +25,10 @@ public:
     {
         brush = new QBrush(initColor);
         pen = new QPen(initColor);
+        quat = new Quaternion(1, 0, 0, 0);
+        Quaternion * rotator = new Quaternion(1, 0, 0, 0);
+        rotator->FromAxisAngle(MathVector(0, 0, 1), M_PI / 4);
+        *quat = *quat * *rotator;
     }
 
     QRectF boundingRect() const;
@@ -73,9 +78,9 @@ private:
     QPen *pen;
     QBrush *brush;
     int lifeTime;
-    //    It is very unnecessary
+    //    It is very unnecessary. Static methods
     SceneMatrix * matrix;
-
+    Quaternion * quat;
 
 
 };

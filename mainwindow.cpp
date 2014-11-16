@@ -7,6 +7,8 @@ MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
+//    NICE!
+    this->setWindowState(Qt::WindowMaximized);
     scene = new QGraphicsScene();
     ui->setupUi(this);
     ui->graphicsView->setScene(scene);
@@ -57,11 +59,11 @@ void MainWindow::on_EmitterPlacement_clicked()
     int lifetime = ui->EmitterLifetime->value();
 
     //    USE CONTEXT
-
+/*
     Context context;
     context.add(&acceleration, QString("acceleration"));
-
     MathVector newAcc = *(MathVector *)context.get("acceleration");
+*/
     manager.addEmission(acceleration, position, speed, spread, Qt::blue, emissionRate, lifetime);
 
 

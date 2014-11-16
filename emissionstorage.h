@@ -5,6 +5,7 @@
 #include "field.h"
 #include <QList>
 
+#include "scale.h"
 
 
 class EmissionStorage

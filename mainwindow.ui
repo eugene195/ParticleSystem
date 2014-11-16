@@ -563,8 +563,8 @@
    <widget class="QPushButton" name="pushButton">
     <property name="geometry">
      <rect>
-      <x>840</x>
-      <y>640</y>
+      <x>320</x>
+      <y>520</y>
       <width>82</width>
       <height>23</height>
      </rect>
@@ -672,6 +672,19 @@
     </property>
     <property name="text">
      <string>RotateYNeg</string>
+    </property>
+   </widget>
+   <widget class="QSlider" name="rotatorOZSlider">
+    <property name="geometry">
+     <rect>
+      <x>900</x>
+      <y>690</y>
+      <width>160</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="orientation">
+     <enum>Qt::Horizontal</enum>
     </property>
    </widget>
   </widget>

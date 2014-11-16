@@ -22,6 +22,10 @@ void Particle::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, 
     painter->setPen(*pen);
 
     MathVector projected = matrix->project(position);
+
+
+
+//    MathVector projected = quat->Project(position);
 // A good Idea
 //    int rad = projected.Z / 10;
 //    if (rad < 1)

@@ -79,6 +79,10 @@ private:
     FieldList fields;
     Drawer *drawer;
     SceneMatrix * matrix;
+
+    Quaternion quaternion;
+//    SceneMatrix matrix;
+    Scale scale;
 };
 
 #endif // EMISSIONMANAGER_H

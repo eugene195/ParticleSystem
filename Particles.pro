@@ -21,7 +21,8 @@ SOURCES += main.cpp\
     mathvector.cpp \
     systemmanager.cpp \
     mover.cpp \
-    scenematrix.cpp
+    scenematrix.cpp \
+    quaternion.cpp
 
 HEADERS  += mainwindow.h \
     particle.h \
@@ -33,6 +34,8 @@ HEADERS  += mainwindow.h \
     mover.h \
     field.h \
     scenematrix.h \
-    context.h
+    context.h \
+    quaternion.h \
+    scale.h
 
 FORMS    += mainwindow.ui
