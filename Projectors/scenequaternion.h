@@ -15,11 +15,11 @@ public:
 //    **********************************************
 
     void rotateZPos() {
-        quaternion = quaternion * xPositiveQuat;
+        quaternion = quaternion * zNegativeQuat;
     }
 
     void rotateZNeg() {
-        quaternion = quaternion * xNegativeQuat;
+        quaternion = quaternion * zPositiveQuat;
     }
 
     void rotateYPos() {
@@ -31,17 +31,17 @@ public:
     }
 
     void rotateXPos() {
-        quaternion = quaternion * zPositiveQuat;
+        quaternion = quaternion * xPositiveQuat;
     }
 
     void rotateXNeg() {
-        quaternion = quaternion * zNegativeQuat;
+        quaternion = quaternion * xNegativeQuat;
     }
 
 //    **********************************************
 
     void resize(double factor) {
-        scale.setFactor(factor);
+        scale.addFactor(factor);
     }
 
 //    **********************************************
@@ -59,15 +59,17 @@ public:
     }
 
 private:
+    const double angle = M_PI / 180;
+
     void adjustQuaternions() {
-        xPositiveQuat.set(Quaternion(MathVector(1, 0, 0), M_PI / 40));
-        xNegativeQuat.set(Quaternion(MathVector(1, 0, 0), -M_PI / 40));
+        xPositiveQuat.fromAxisAngle(MathVector(1, 0, 0), angle);
+        xNegativeQuat.fromAxisAngle(MathVector(1, 0, 0), -angle);
 
-        yPositiveQuat.set(Quaternion(MathVector(0, 1, 0), M_PI / 40));
-        yNegativeQuat.set(Quaternion(MathVector(0, 1, 0), -M_PI / 40));
+        yPositiveQuat.fromAxisAngle(MathVector(0, 1, 0), angle);
+        yNegativeQuat.fromAxisAngle(MathVector(0, 1, 0), -angle);
 
-        zPositiveQuat.set(Quaternion(MathVector(0, 0, 1), M_PI / 40));
-        zNegativeQuat.set(Quaternion(MathVector(0, 0, 1), -M_PI / 40));
+        zPositiveQuat.fromAxisAngle(MathVector(0, 0, 1), angle);
+        zNegativeQuat.fromAxisAngle(MathVector(0, 0, 1), -angle);
     }
 
     Quaternion quaternion;

@@ -4,9 +4,7 @@
 
 #include <QGraphicsItem>
 #include <QPainter>
-#include "scenematrix.h"
 #include "field.h"
-#include "quaternion.h"
 #include "Projectors/projector.h"
 
 class Particle : public QGraphicsItem
@@ -27,10 +25,6 @@ public:
     {
         brush = new QBrush(initColor);
         pen = new QPen(initColor);
-//        quat = new Quaternion(1, 0, 0, 0);
-//        Quaternion * rotator = new Quaternion(1, 0, 0, 0);
-//        rotator->fromAxisAngle(MathVector(0, 0, 1), M_PI / 4);
-//        *quat = *quat * *rotator;
     }
 
     QRectF boundingRect() const;
@@ -64,10 +58,6 @@ public:
 
     int getLifeTime() const{
         return lifeTime;
-    }
-
-    void killParticle(){
-        lifeTime = 0;
     }
 
 private:

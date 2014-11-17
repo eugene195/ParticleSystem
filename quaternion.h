@@ -64,12 +64,6 @@ public:
         return Quaternion(W, X, Y, Z);
     }
 
-    void set(const Quaternion & from) {
-        this->W = from.W;
-        this->X = from.X;
-        this->Y = from.Y;
-        this->Z = from.Z;
-    }
 
     MathVector project(const MathVector & pt)
     {

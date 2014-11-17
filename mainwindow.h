@@ -53,6 +53,10 @@ private slots:
 
     void on_rotateYNeg_clicked();
 
+    void on_rotatorOZ_sliderMoved(int position);
+
+    void on_rotatorOZ_valueChanged(int value);
+
 public slots:
     void loop()
     {

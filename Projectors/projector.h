@@ -3,6 +3,9 @@
 
 #include "../mathvector.h"
 
+enum RotateDirection { XPOS, XNEG, YPOS, YNEG, ZPOS, ZNEG };
+enum MovementDirection { MVLEFT = 16777234, MVUP, MVRIGHT, MVDOWN };
+
 class AbstractProjector
 {
 public:

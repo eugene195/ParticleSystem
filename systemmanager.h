@@ -6,6 +6,7 @@
 #include "mover.h"
 #include "field.h"
 #include "Projectors/scenequaternion.h"
+#include "scenematrix.h"
 
 
 class SystemManager
@@ -43,7 +44,7 @@ public:
         projector->addMovement(mvX, mvY);
     }
 
-    void ratateY(RotateDirection direct) {
+    void rotateY(RotateDirection direct) {
         if (direct == YPOS)
             projector->rotateYPos();
         else if (direct == YNEG)
@@ -60,7 +61,7 @@ public:
     void rotateZ(RotateDirection direct) {
         if (direct == ZPOS)
             projector->rotateZPos();
-        else if (direct == ZNEG)
+        else
             projector->rotateZNeg();
     }
 

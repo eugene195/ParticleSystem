@@ -10,9 +10,9 @@ const int DEF_ACC = 1;
 const int DEF_EMISSION_RATE = 3;
 const double DEF_SPREAD = 5;
 const int DEFAULT_LIFETIME = 100;
-const unsigned DEFAULT_RED = 0;
-const unsigned DEFAULT_GREEN = 0;
-const unsigned DEFAULT_BLUE = 0;
+const unsigned DEFAULT_RED = 255;
+const unsigned DEFAULT_GREEN = 255;
+const unsigned DEFAULT_BLUE = 255;
 const unsigned DEFAULT_TRANSPARENCY = 25;
 // Important
 const int DEFAULT_SPREAD_MODIFIER = 1000000;

@@ -10,6 +10,7 @@ MainWindow::MainWindow(QWidget *parent) :
 //    NICE!
     this->setWindowState(Qt::WindowMaximized);
     scene = new QGraphicsScene();
+    scene->setBackgroundBrush(QBrush(Qt::black));
     ui->setupUi(this);
     ui->graphicsView->setScene(scene);
 }
@@ -94,8 +95,10 @@ void MainWindow::wheelEvent(QWheelEvent *event) {
 
 
 // Movement - ASWD
+// Rotation UI, HJ, BN
 void MainWindow::keyPressEvent(QKeyEvent *event) {
     int key = event->key();
+
     int valX, valY;
     valX = valY = 0;
     if (key == 65)
@@ -106,6 +109,18 @@ void MainWindow::keyPressEvent(QKeyEvent *event) {
         valX = -10;
     else if (key == 83)
         valY = -10;
+    else if (key == 85)
+        manager.rotateZ(ZPOS);
+    else if (key == 73)
+        manager.rotateZ(ZNEG);
+    else if (key == 72)
+        manager.rotateY(YPOS);
+    else if (key == 74)
+        manager.rotateY(YNEG);
+    else if (key == 66)
+        manager.rotateX(XPOS);
+    else if (key == 78)
+        manager.rotateX(XNEG);
     manager.move(valX, valY);
 }
 
@@ -147,12 +162,12 @@ void MainWindow::on_rotateZNeg_clicked()
 
 void MainWindow::on_rotateYPos_clicked()
 {
-    manager.ratateY(YPOS);
+    manager.rotateY(YPOS);
 }
 
 void MainWindow::on_rotateYNeg_clicked()
 {
-     manager.ratateY(YNEG);
+     manager.rotateY(YNEG);
 }
 
 void MainWindow::on_rotateXPos_clicked()
@@ -173,3 +188,13 @@ void MainWindow::on_resize_minus_clicked()
 }
 
 
+
+void MainWindow::on_rotatorOZ_sliderMoved(int position)
+{
+
+}
+
+void MainWindow::on_rotatorOZ_valueChanged(int value)
+{
+    manager.rotateZ(ZPOS);
+}

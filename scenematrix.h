@@ -5,9 +5,6 @@
 #include "Projectors/projector.h"
 #include <mathvector.h>
 
-enum RotateDirection { XPOS, XNEG, YPOS, YNEG, ZPOS, ZNEG };
-enum MovementDirection { MVLEFT = 16777234, MVUP, MVRIGHT, MVDOWN };
-
 class SceneMatrix : public AbstractProjector
 {
 public:
@@ -78,7 +75,7 @@ private:
     QMatrix3x3 resizeMatrix;
     MathVector movementVector;
 
-    const double angle = M_PI / 40;
+    const double angle = M_PI / 180;
 //    **********************************************
     void setAuxParameters() {
         setXMatrix(angle, rXPositiveMatrix);
