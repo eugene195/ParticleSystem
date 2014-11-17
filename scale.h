@@ -5,15 +5,21 @@
 
 class Scale
 {
+
+private:
+    double scaleFactor;
 public:
-    static MathVector project(const MathVector & vec) {
-        return MathVector(vec.X * scaleFactor, vec.Y * scaleFactor, vec.Z * scaleFactor);
+    Scale() { scaleFactor = 1; }
+
+    void apply(MathVector & vec) {
+        vec.X = vec.X * scaleFactor;
+        vec.Y = vec.Y * scaleFactor;
+        vec.Z = vec.Z * scaleFactor;
     }
 
-    static void setFactor(double newFactor) {scaleFactor = newFactor;}
-    static void addFactor(double addFactor) {scaleFactor *= addFactor;}
-private:
-    static double scaleFactor;
+    void setFactor(double newFactor) {scaleFactor = newFactor;}
+    void addFactor(double addFactor) {scaleFactor *= addFactor;}
+
 };
 
 #endif // SCALE_H

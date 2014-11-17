@@ -57,14 +57,17 @@ void MainWindow::on_EmitterPlacement_clicked()
     double spread = ui->EmitterSpread->value();
     int emissionRate = ui->EmitterRate->value();
     int lifetime = ui->EmitterLifetime->value();
+    QColor col(Qt::blue);
 
-    //    USE CONTEXT
-/*
     Context context;
-    context.add(&acceleration, QString("acceleration"));
-    MathVector newAcc = *(MathVector *)context.get("acceleration");
-*/
-    manager.addEmission(acceleration, position, speed, spread, Qt::blue, emissionRate, lifetime);
+    context.add(&acceleration, "acceleration");
+    context.add(&position, "position");
+    context.add(&speed, "speed");
+    context.add(&spread, "spread");
+    context.add(&col, "color");
+    context.add(&emissionRate, "emissionRate");
+    context.add(&lifetime, "lifetime");
+    manager.addEmission(context);
 
 
     QString positionStr = "(" + QString::number(position.X) + ", " +

@@ -2,6 +2,7 @@
 #define EMITTER_H
 
 #include "particle.h"
+#include "context.h"
 #include <cstdlib>
 
 const int DEF_SPEED = 2;
@@ -13,6 +14,7 @@ const unsigned DEFAULT_RED = 0;
 const unsigned DEFAULT_GREEN = 0;
 const unsigned DEFAULT_BLUE = 0;
 const unsigned DEFAULT_TRANSPARENCY = 25;
+// Important
 const int DEFAULT_SPREAD_MODIFIER = 1000000;
 
 typedef QVector<Particle *> ParticleVector;
@@ -20,18 +22,16 @@ typedef QVector<Particle *> ParticleVector;
 class Emitter
 {
 public:
-    Emitter(  MathVector initAcc = MathVector()
-            , MathVector initPos = MathVector()
-            , SceneMatrix * initScene = new SceneMatrix()
-            , MathVector initSpeed = MathVector(DEF_SPEED, DEF_SPEED, 0)
-            , double initSpread = DEF_SPREAD
-            , QColor initColor = Qt::blue
-            , int initEmissionRate = DEF_EMISSION_RATE
-            , int initLifetime = DEFAULT_LIFETIME)
-        : acceleration(initAcc), position(initPos),
-          speed(initSpeed), spread(initSpread / DEFAULT_SPREAD_MODIFIER),
-          drawColor(initColor), emissionRate(initEmissionRate),
-          lifetime(initLifetime), matrix(initScene) {}
+    Emitter (const Context & context) {
+        acceleration = *(MathVector *)context.get("acceleration");
+        position = *(MathVector *)context.get("position");
+        speed = *(MathVector *)context.get("speed");
+        spread = *(double *)context.get("spread") / DEFAULT_SPREAD_MODIFIER;
+        drawColor = *(QColor *)context.get("color");
+        emissionRate = *(int *)context.get("emissionRate");
+        lifetime = *(int *)context.get("lifetime");
+        projector = (AbstractProjector *)context.get("projector");
+    }
 
     ParticleVector emitParticles(){
         ParticleVector newParticles;
@@ -51,7 +51,7 @@ public:
         MathVector newPos = position;
         MathVector newSpeed = MathVector::fromAngle(angle, length);
         int lifetime = randomLifeTime();
-        return new Particle(newSpeed, MathVector(), initMass , newPos, matrix, lifetime, createColor(DEFAULT_TRANSPARENCY));
+        return new Particle(newSpeed, MathVector(), initMass , newPos, lifetime, projector, createColor(DEFAULT_TRANSPARENCY));
     }
 
     int randomLifeTime() {
@@ -83,7 +83,7 @@ private:
     const double initMass = 0.06;
     int lifetime;
 
-    SceneMatrix * matrix;
+    AbstractProjector * projector;
 };
 
 #endif // EMITTER_H

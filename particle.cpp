@@ -21,7 +21,7 @@ void Particle::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, 
     painter->setBrush(*brush);
     painter->setPen(*pen);
 
-    MathVector projected = matrix->project(position);
+    MathVector projected = projector->project(position);
 
 
 

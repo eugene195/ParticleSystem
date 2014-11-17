@@ -2,12 +2,13 @@
 #define SCENEMATRIX_H
 
 #include <QMatrix2x2>
+#include "Projectors/projector.h"
 #include <mathvector.h>
 
 enum RotateDirection { XPOS, XNEG, YPOS, YNEG, ZPOS, ZNEG };
 enum MovementDirection { MVLEFT = 16777234, MVUP, MVRIGHT, MVDOWN };
 
-class SceneMatrix
+class SceneMatrix : public AbstractProjector
 {
 public:
     SceneMatrix() {
@@ -45,12 +46,14 @@ public:
         currentMatrix = currentMatrix * resizeMatrix;
     }
 //    **********************************************
-    void move(int valX, int valY) {
-        setMovementVector(valX, valY);
+    void addMovement(int valX, int valY, int valZ = 0) {
+        movementVector.X += valX;
+        movementVector.Y += valY;
+        movementVector.Z += valZ;
     }
 
 //    **********************************************
-    MathVector project(const MathVector & in) const {
+    MathVector project(const MathVector & in) {
         return MathVector
         (
             in.X * currentMatrix(0, 0) + in.Y * currentMatrix(0, 1) + in.Z * currentMatrix(0, 2) + movementVector.X,
@@ -75,7 +78,7 @@ private:
     QMatrix3x3 resizeMatrix;
     MathVector movementVector;
 
-    const double angle = sin(M_PI / 40);
+    const double angle = M_PI / 40;
 //    **********************************************
     void setAuxParameters() {
         setXMatrix(angle, rXPositiveMatrix);
@@ -98,11 +101,6 @@ private:
         resize[6] = 0,      resize[7] = 0,         resize[8] = factor;
     }
 //    **********************************************
-    void setMovementVector(int valX, int valY, int valZ = 0) {
-        movementVector.X += valX;
-        movementVector.Y += valY;
-        movementVector.Z += valZ;
-    }
 //    **********************************************
     void setXMatrix(double ang, QMatrix3x3 & matrixToSet) {
         float * rotX = new float(9);

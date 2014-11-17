@@ -5,6 +5,7 @@
 #include "drawer.h"
 #include "mover.h"
 #include "field.h"
+#include "Projectors/scenequaternion.h"
 
 
 class SystemManager
@@ -23,8 +24,9 @@ public:
         drawer = new Drawer(scene);
     }
 
-    void addEmission(MathVector & acceleration, MathVector & position, MathVector & speed, double spread, QColor color, int rate, int lifetime) {
-        Emitter * emitter = new Emitter(acceleration, position, matrix, speed, spread, color, rate, lifetime);
+    void addEmission(Context & context) {
+        context.add(projector, QString("projector"));
+        Emitter * emitter = new Emitter(context);
         EmissionStorage * store = new EmissionStorage(emitter);
         storages.append(store);
     }
@@ -34,32 +36,32 @@ public:
     }
 
     void resize(double factor) {
-        matrix->resize(factor);
+        projector->resize(factor);
     }
 
     void move(int mvX, int mvY) {
-        matrix->move(mvX, mvY);
+        projector->addMovement(mvX, mvY);
     }
 
     void ratateY(RotateDirection direct) {
         if (direct == YPOS)
-            matrix->rotateYPos();
+            projector->rotateYPos();
         else if (direct == YNEG)
-            matrix->rotateYNeg();
+            projector->rotateYNeg();
     }
 
     void rotateX(RotateDirection direct) {
         if (direct == XPOS)
-            matrix->rotateXPos();
+            projector->rotateXPos();
         else if (direct == XNEG)
-            matrix->rotateXNeg();
+            projector->rotateXNeg();
     }
 
     void rotateZ(RotateDirection direct) {
         if (direct == ZPOS)
-            matrix->rotateZPos();
+            projector->rotateZPos();
         else if (direct == ZNEG)
-            matrix->rotateZNeg();
+            projector->rotateZNeg();
     }
 
     void changeForEmission(int emission, QString parameter, int value) {
@@ -70,7 +72,13 @@ public:
         fields[field]->changeField(parameter, value);
     }
 
-    SystemManager() { drawer = 0; matrix = new SceneMatrix(); }
+    SystemManager() {
+        drawer = 0;
+
+        // TODO
+        projector = new SceneQuaternion();
+//        projector = new SceneMatrix();
+    }
 public slots:
     void loop();
 private:
@@ -78,11 +86,8 @@ private:
     StorageList storages;
     FieldList fields;
     Drawer *drawer;
-    SceneMatrix * matrix;
 
-    Quaternion quaternion;
-//    SceneMatrix matrix;
-    Scale scale;
+    AbstractProjector * projector;
 };
 
 #endif // EMISSIONMANAGER_H

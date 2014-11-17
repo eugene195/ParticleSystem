@@ -22,7 +22,8 @@ SOURCES += main.cpp\
     systemmanager.cpp \
     mover.cpp \
     scenematrix.cpp \
-    quaternion.cpp
+    quaternion.cpp \
+    Projectors/scenequaternion.cpp
 
 HEADERS  += mainwindow.h \
     particle.h \
@@ -36,6 +37,9 @@ HEADERS  += mainwindow.h \
     scenematrix.h \
     context.h \
     quaternion.h \
-    scale.h
+    scale.h \
+    translate.h \
+    Projectors/projector.h \
+    Projectors/scenequaternion.h
 
 FORMS    += mainwindow.ui

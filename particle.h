@@ -7,6 +7,7 @@
 #include "scenematrix.h"
 #include "field.h"
 #include "quaternion.h"
+#include "Projectors/projector.h"
 
 class Particle : public QGraphicsItem
 {
@@ -15,20 +16,21 @@ public:
     Particle(
              MathVector initSpeed, MathVector initAcc,
              double initMass, MathVector initPos,
-             SceneMatrix * newMatrix, int initLifeTime,
+             int initLifeTime,
+             AbstractProjector * initProjector,
              QColor initColor = QColor(0, 0, 255, 255)
             ) :
           speed(initSpeed), acceleration(initAcc),
           mass(initMass),  position(initPos),
           color(initColor), lifeTime(initLifeTime),
-          matrix(newMatrix)
+          projector(initProjector)
     {
         brush = new QBrush(initColor);
         pen = new QPen(initColor);
-        quat = new Quaternion(1, 0, 0, 0);
-        Quaternion * rotator = new Quaternion(1, 0, 0, 0);
-        rotator->FromAxisAngle(MathVector(0, 0, 1), M_PI / 4);
-        *quat = *quat * *rotator;
+//        quat = new Quaternion(1, 0, 0, 0);
+//        Quaternion * rotator = new Quaternion(1, 0, 0, 0);
+//        rotator->fromAxisAngle(MathVector(0, 0, 1), M_PI / 4);
+//        *quat = *quat * *rotator;
     }
 
     QRectF boundingRect() const;
@@ -79,8 +81,7 @@ private:
     QBrush *brush;
     int lifeTime;
     //    It is very unnecessary. Static methods
-    SceneMatrix * matrix;
-    Quaternion * quat;
+    AbstractProjector * projector;
 
 
 };

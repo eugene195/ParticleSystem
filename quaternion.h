@@ -1,7 +1,7 @@
 #ifndef QUATERNION_H
 #define QUATERNION_H
 #include "mathvector.h"
-
+#include "Projectors/projector.h"
 class Quaternion
 {
 public:
@@ -16,12 +16,12 @@ public:
         W = w; X = x; Y = y; Z = z;
     }
 
-    Quaternion(double w, const MathVector & vec)
+    Quaternion(const MathVector & vec, double w)
     {
         W = w; X = vec.X; Y = vec.Y; Z = vec.Z;
     }
 
-    void Normalise()
+    void normalise()
     {
         double magnitude = W * W + X * X + Y * Y + Z * Z;
         if (magnitude > 0.001) {
@@ -36,12 +36,12 @@ public:
         }
     }
 
-    void Conjugate()
+    void conjugate()
     {
         X = -X; Y = -Y; Z = -Z;
     }
 
-    void FromAxisAngle(MathVector axis, double angleRadian)
+    void fromAxisAngle(MathVector axis, double angleRadian)
     {
         double magnitude = axis.getLen();
         if (magnitude > 0.0001)
@@ -59,17 +59,24 @@ public:
         }
     }
 
-    Quaternion Copy()
+    Quaternion copy()
     {
         return Quaternion(W, X, Y, Z);
     }
 
-    MathVector Project(const MathVector & pt)
+    void set(const Quaternion & from) {
+        this->W = from.W;
+        this->X = from.X;
+        this->Y = from.Y;
+        this->Z = from.Z;
+    }
+
+    MathVector project(const MathVector & pt)
     {
-        this->Normalise();
-        Quaternion q0 = this->Copy();
-        Quaternion q1 = this->Copy();
-        q1.Conjugate();
+        this->normalise();
+        Quaternion q0 = this->copy();
+        Quaternion q1 = this->copy();
+        q1.conjugate();
 
         Quaternion qNode = Quaternion(0, pt.X, pt.Y, pt.Z);
         qNode = q0 * qNode * q1;
@@ -84,6 +91,8 @@ public:
         double nz = this->W * right.Z + this->Z * right.W + this->X * right.Y - this->Y * right.X;
         return Quaternion(nw, nx, ny, nz);
     }
+
+
 
 };
 

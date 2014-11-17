@@ -12,7 +12,7 @@ class EmissionStorage
 {
 public:
     EmissionStorage(Emitter * initialEmit) : emitter(initialEmit), particleList(ParticleVector()) {}
-    EmissionStorage(MathVector emitterPos) : emitter(new Emitter(emitterPos)), particleList(ParticleVector()) {}
+//    EmissionStorage(MathVector emitterPos) : emitter(new Emitter(emitterPos)), particleList(ParticleVector()) {}
     ParticleVector emitParticle();
     void moveParticles();
     void applyField(const FieldList & fields);
