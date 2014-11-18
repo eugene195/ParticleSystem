@@ -39,23 +39,25 @@ private slots:
 
     void on_EmitterLifetimeSlider_valueChanged(int value);
 
-    void on_rotateZPos_clicked();
-
-    void on_rotateZNeg_clicked();
-
-    void on_rotateYPos_clicked();
-
-    void on_rotateXPos_clicked();
-
     void on_resize_plus_clicked();
 
     void on_resize_minus_clicked();
 
-    void on_rotateYNeg_clicked();
-
     void on_rotatorOZ_sliderMoved(int position);
 
     void on_rotatorOZ_valueChanged(int value);
+
+    void on_rotateClockwise_clicked();
+
+    void on_rotateCounterClockwise_clicked();
+
+    void on_action_triggered();
+
+    void on_action_2_triggered();
+
+    void on_ShowHideMenu_clicked();
+
+    void on_PauseBtn_clicked();
 
 public slots:
     void loop()

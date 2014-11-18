@@ -22,6 +22,7 @@ public:
 
 
     void initScene(QGraphicsScene *scene) {
+        running = 1;
         drawer = new Drawer(scene);
     }
 
@@ -38,6 +39,10 @@ public:
 
     void resize(double factor) {
         projector->resize(factor);
+    }
+
+    void triggerRunning() {
+        running = !running;
     }
 
     void move(int mvX, int mvY) {
@@ -75,7 +80,7 @@ public:
 
     SystemManager() {
         drawer = 0;
-
+        running = 0;
         // TODO
         projector = new SceneQuaternion();
 //        projector = new SceneMatrix();
@@ -87,6 +92,7 @@ private:
     StorageList storages;
     FieldList fields;
     Drawer *drawer;
+    bool running;
 
     AbstractProjector * projector;
 };

@@ -22,6 +22,8 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_pushButton_clicked()
 {
+    ui->splitter->hide();
+    ui->ShowHideMenu->setText("show");
     manager.initScene(scene);
     srand (time(NULL));
 }
@@ -150,35 +152,11 @@ void MainWindow::on_EmitterLifetimeSlider_valueChanged(int value)
     manager.changeForEmission(emitNum, "lifetime", value);
 }
 
-void MainWindow::on_rotateZPos_clicked()
-{
-    manager.rotateZ(ZPOS);
-}
-
-void MainWindow::on_rotateZNeg_clicked()
-{
-    manager.rotateZ(ZNEG);
-}
-
-void MainWindow::on_rotateYPos_clicked()
-{
-    manager.rotateY(YPOS);
-}
-
-void MainWindow::on_rotateYNeg_clicked()
-{
-     manager.rotateY(YNEG);
-}
-
-void MainWindow::on_rotateXPos_clicked()
-{
-    manager.rotateX(XPOS);
-}
-
 void MainWindow::on_resize_plus_clicked()
 {
     double factor = 1.3;
     manager.resize(factor);
+    qDebug() << "Resize +";
 }
 
 void MainWindow::on_resize_minus_clicked()
@@ -196,5 +174,61 @@ void MainWindow::on_rotatorOZ_sliderMoved(int position)
 
 void MainWindow::on_rotatorOZ_valueChanged(int value)
 {
-    manager.rotateZ(ZPOS);
+    if (ui->XAxis->isChecked())
+        manager.rotateX(XPOS);
+    else if (ui->YAxis->isChecked())
+        manager.rotateY(YPOS);
+    else
+        manager.rotateZ(ZPOS);
+}
+
+void MainWindow::on_rotateClockwise_clicked()
+{
+    if (ui->XAxis->isChecked())
+        manager.rotateX(XPOS);
+    else if (ui->YAxis->isChecked())
+        manager.rotateY(YPOS);
+    else
+        manager.rotateZ(ZPOS);
+}
+
+void MainWindow::on_rotateCounterClockwise_clicked()
+{
+    if (ui->XAxis->isChecked())
+        manager.rotateX(XNEG);
+    else if (ui->YAxis->isChecked())
+        manager.rotateY(YNEG);
+    else
+        manager.rotateZ(ZNEG);
+}
+
+void MainWindow::on_action_triggered()
+{
+    ui->splitter->show();
+}
+
+void MainWindow::on_action_2_triggered()
+{
+    ui->splitter->hide();
+}
+
+void MainWindow::on_ShowHideMenu_clicked()
+{
+    if (ui->ShowHideMenu->text() == "hide") {
+        ui->splitter->hide();
+        ui->ShowHideMenu->setText("show");
+    }
+    else {
+        ui->splitter->show();
+        ui->ShowHideMenu->setText("hide");
+    }
+}
+
+void MainWindow::on_PauseBtn_clicked()
+{
+    manager.triggerRunning();
+    if (ui->PauseBtn->text() == "Pause")
+        ui->PauseBtn->setText("Resume");
+    else
+        ui->PauseBtn->setText("Pause");
 }

@@ -31,6 +31,10 @@ public:
         emissionRate = *(int *)context.get("emissionRate");
         lifetime = *(int *)context.get("lifetime");
         projector = (AbstractProjector *)context.get("projector");
+
+        drawColor = createColor(DEFAULT_TRANSPARENCY);
+        pen.setColor(drawColor);
+        brush.setColor(drawColor);
     }
 
     ParticleVector emitParticles(){
@@ -51,7 +55,7 @@ public:
         MathVector newPos = position;
         MathVector newSpeed = MathVector::fromAngle(angle, length);
         int lifetime = randomLifeTime();
-        return new Particle(newSpeed, MathVector(), initMass , newPos, lifetime, projector, createColor(DEFAULT_TRANSPARENCY));
+        return new Particle(newSpeed, MathVector(), initMass , newPos, lifetime, projector, pen, brush, createColor(DEFAULT_TRANSPARENCY));
     }
 
     int randomLifeTime() {
@@ -84,6 +88,9 @@ private:
     int lifetime;
 
     AbstractProjector * projector;
+
+    QPen pen;
+    QBrush brush;
 };
 
 #endif // EMITTER_H

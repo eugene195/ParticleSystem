@@ -16,15 +16,16 @@ public:
              double initMass, MathVector initPos,
              int initLifeTime,
              AbstractProjector * initProjector,
+             QPen & initPen, QBrush & initBrush,
              QColor initColor = QColor(0, 0, 255, 255)
             ) :
           speed(initSpeed), acceleration(initAcc),
           mass(initMass),  position(initPos),
           color(initColor), lifeTime(initLifeTime),
+          pen(initPen), brush(initBrush),
           projector(initProjector)
     {
-        brush = new QBrush(initColor);
-        pen = new QPen(initColor);
+//        THis is a bug TODO
     }
 
     QRectF boundingRect() const;
@@ -67,9 +68,10 @@ private:
     MathVector position;
     QColor color;
 
-    QPen *pen;
-    QBrush *brush;
+
     int lifeTime;
+    QPen pen;
+    QBrush brush;
     //    It is very unnecessary. Static methods
     AbstractProjector * projector;
 

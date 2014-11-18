@@ -5,7 +5,7 @@ const int DELETION_TRESHOLD = 20;
 
 void SystemManager::loop()
 {
-    if(drawer){
+    if(running){
         if(storages.isEmpty())
             return;
 
