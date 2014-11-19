@@ -11,7 +11,9 @@ MainWindow::MainWindow(QWidget *parent) :
     this->setWindowState(Qt::WindowMaximized);
     scene = new QGraphicsScene();
     scene->setBackgroundBrush(QBrush(Qt::black));
+    manager.initScene(scene);
     ui->setupUi(this);
+    srand (time(NULL));
     ui->graphicsView->setScene(scene);
 }
 
@@ -22,10 +24,11 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_pushButton_clicked()
 {
-    ui->splitter->hide();
-    ui->ShowHideMenu->setText("show");
-    manager.initScene(scene);
-    srand (time(NULL));
+    manager.triggerRunning();
+    if (manager.isRunning())
+        ui->pushButton->setText("Pause");
+    else
+        ui->pushButton->setText("Resume");
 }
 
 void MainWindow::on_FieldPlacement_2_clicked()
@@ -80,11 +83,6 @@ void MainWindow::on_EmitterPlacement_clicked()
     ui->EmitterList->setCurrentRow(ui->EmitterList->count() - 1);
 }
 
-void MainWindow::on_EmissionRateSlider_sliderMoved(int position)
-{
-
-}
-
 void MainWindow::wheelEvent(QWheelEvent *event) {
     QPoint numDegrees = event->angleDelta();
     double factor = 1;
@@ -126,30 +124,42 @@ void MainWindow::keyPressEvent(QKeyEvent *event) {
     manager.move(valX, valY);
 }
 
+void MainWindow::resetAll()
+{
+    ui->EmitterList->clear();
+    ui->FieldList->clear();
+    manager.reset();
+    ui->pushButton->setText("Resume");
+}
+
 
 //Exception here
 void MainWindow::on_EmissionRateSlider_valueChanged(int value)
 {
     int emitNum = ui->EmitterList->currentRow();
-    manager.changeForEmission(emitNum, "emissionRate", value);
+    if (emitNum >= 0)
+        manager.changeForEmission(emitNum, "emissionRate", value);
 }
 
 void MainWindow::on_EmissionSpreadSlider_valueChanged(int value)
 {
     int emitNum = ui->EmitterList->currentRow();
-    manager.changeForEmission(emitNum, "spread", value);
+    if (emitNum >= 0)
+        manager.changeForEmission(emitNum, "spread", value);
 }
 
 void MainWindow::on_FieldPowerSlider_valueChanged(int value)
 {
     int fieldNum = ui->FieldList->currentRow();
-    manager.changeForField(fieldNum, "power", value);
+    if (fieldNum >= 0)
+        manager.changeForField(fieldNum, "power", value);
 }
 
 void MainWindow::on_EmitterLifetimeSlider_valueChanged(int value)
 {
     int emitNum = ui->EmitterList->currentRow();
-    manager.changeForEmission(emitNum, "lifetime", value);
+    if (emitNum >= 0)
+        manager.changeForEmission(emitNum, "lifetime", value);
 }
 
 void MainWindow::on_resize_plus_clicked()
@@ -163,13 +173,6 @@ void MainWindow::on_resize_minus_clicked()
 {
     double factor = 0.7;
     manager.resize(factor);
-}
-
-
-
-void MainWindow::on_rotatorOZ_sliderMoved(int position)
-{
-
 }
 
 void MainWindow::on_rotatorOZ_valueChanged(int value)
@@ -224,11 +227,20 @@ void MainWindow::on_ShowHideMenu_clicked()
     }
 }
 
-void MainWindow::on_PauseBtn_clicked()
+
+void MainWindow::on_resetBtn_clicked()
 {
-    manager.triggerRunning();
-    if (ui->PauseBtn->text() == "Pause")
-        ui->PauseBtn->setText("Resume");
-    else
-        ui->PauseBtn->setText("Pause");
+    this->resetAll();
+}
+
+void MainWindow::on_action_6_triggered()
+{
+    this->resetAll();
+    manager.setProjectionType(QUATERNION);
+}
+
+void MainWindow::on_action_5_triggered()
+{
+    this->resetAll();
+    manager.setProjectionType(MATRIX);
 }

@@ -16,28 +16,19 @@ public:
              double initMass, MathVector initPos,
              int initLifeTime,
              AbstractProjector * initProjector,
-             QPen & initPen, QBrush & initBrush,
-             QColor initColor = QColor(0, 0, 255, 255)
+             QPen & initPen, QBrush & initBrush
             ) :
           speed(initSpeed), acceleration(initAcc),
           mass(initMass),  position(initPos),
-          color(initColor), lifeTime(initLifeTime),
+          lifeTime(initLifeTime),
           pen(initPen), brush(initBrush),
           projector(initProjector)
-    {
-//        THis is a bug TODO
-    }
+    { }
 
     QRectF boundingRect() const;
 
     void applyField(const FieldList &fldlst);
-    void advance()
-    {
-        --lifeTime;
-
-        speed = speed + acceleration;
-        position = position + speed;
-    }
+    void advance();
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option,
                QWidget *widget);
 
@@ -66,7 +57,6 @@ private:
     MathVector acceleration;
     double mass;
     MathVector position;
-    QColor color;
 
 
     int lifeTime;

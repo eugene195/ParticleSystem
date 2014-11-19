@@ -12,6 +12,9 @@ public:
         position = coordinates;
         power = newPower;
     }
+    ~Field() {
+        delete position;
+    }
 
 
     MathVector getPosition() const{

@@ -2,7 +2,7 @@
 #include <QDebug>
 QRectF Particle::boundingRect() const
 {
-    return QRectF(-500, 0, 1000, 500);
+    return QRectF(-1000, -1000, 2000, 2000);
 }
 
 void Particle::applyField(const FieldList &fldlst)
@@ -14,6 +14,13 @@ void Particle::applyField(const FieldList &fldlst)
         totalAcc = totalAcc + distanceToFld * force;
     }
     this->acceleration = totalAcc;
+}
+
+void Particle::advance()
+{
+    --lifeTime;
+    speed = speed + acceleration;
+    position = position + speed;
 }
 
 void Particle::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)

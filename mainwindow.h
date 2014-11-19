@@ -20,6 +20,7 @@ public:
     explicit MainWindow(QWidget *parent = 0);
     void wheelEvent(QWheelEvent *event);
     void keyPressEvent(QKeyEvent *event);
+    void resetAll();
     ~MainWindow();
 
 private slots:
@@ -28,8 +29,6 @@ private slots:
     void on_FieldPlacement_2_clicked();
 
     void on_EmitterPlacement_clicked();
-
-    void on_EmissionRateSlider_sliderMoved(int position);
 
     void on_EmissionRateSlider_valueChanged(int value);
 
@@ -43,8 +42,6 @@ private slots:
 
     void on_resize_minus_clicked();
 
-    void on_rotatorOZ_sliderMoved(int position);
-
     void on_rotatorOZ_valueChanged(int value);
 
     void on_rotateClockwise_clicked();
@@ -57,7 +54,11 @@ private slots:
 
     void on_ShowHideMenu_clicked();
 
-    void on_PauseBtn_clicked();
+    void on_resetBtn_clicked();
+
+    void on_action_6_triggered();
+
+    void on_action_5_triggered();
 
 public slots:
     void loop()

@@ -22,7 +22,6 @@ public:
 
 
     void initScene(QGraphicsScene *scene) {
-        running = 1;
         drawer = new Drawer(scene);
     }
 
@@ -43,6 +42,17 @@ public:
 
     void triggerRunning() {
         running = !running;
+    }
+
+    bool isRunning() {
+        return running;
+    }
+
+    void setProjectionType(ProjectionType type) {
+        if (type == MATRIX)
+            projector = new SceneMatrix();
+        else if (type == QUATERNION)
+            projector = new SceneQuaternion();
     }
 
     void move(int mvX, int mvY) {
@@ -71,19 +81,35 @@ public:
     }
 
     void changeForEmission(int emission, QString parameter, int value) {
-        storages[emission]->changeEmitterField(value, parameter);
+        if (storages.value(emission))
+            storages[emission]->changeEmitterField(value, parameter);
     }
 
     void changeForField(int field, QString parameter, int value) {
-        fields[field]->changeField(parameter, value);
+        if (storages.value(field))
+            fields[field]->changeField(parameter, value);
+    }
+
+    void reset () {
+        drawer->clear();
+        running = 0;
+//        TODO
+//        delete projector;
+        foreach (EmissionStorage * st, storages) {
+            delete st;
+        }
+        storages.clear();
+
+        foreach (Field * fld, fields) {
+            delete fld;
+        }
+        fields.clear();
     }
 
     SystemManager() {
         drawer = 0;
         running = 0;
-        // TODO
         projector = new SceneQuaternion();
-//        projector = new SceneMatrix();
     }
 public slots:
     void loop();

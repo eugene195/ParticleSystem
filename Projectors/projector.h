@@ -5,13 +5,13 @@
 
 enum RotateDirection { XPOS, XNEG, YPOS, YNEG, ZPOS, ZNEG };
 enum MovementDirection { MVLEFT = 16777234, MVUP, MVRIGHT, MVDOWN };
+enum ProjectionType { MATRIX, QUATERNION };
 
 class AbstractProjector
 {
 public:
     AbstractProjector() {}
     virtual MathVector project(const MathVector & vec) = 0;
-
     virtual void rotateZPos() = 0;
     virtual void rotateZNeg() = 0;
     virtual void rotateYPos() = 0;

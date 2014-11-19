@@ -25,5 +25,9 @@ public:
             delete part;
         }
     }
+
+    void clear() {
+        scene->clear();
+    }
 };
 #endif // DRAWER_H
