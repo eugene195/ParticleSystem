@@ -32,9 +32,7 @@ public:
     void changeLifetime(int newLifetime);
     void changeRate(int rateAddition);
 
-    QColor createColor(int red, int green, int blue, int transparency) {
-        return QColor(red, green, blue, transparency);
-    }
+    void changeColor(int red, int green, int blue, int transparency);
 
     int randomLifeTime() {
         return lifetime + rand() % (int)(lifetime / 2);
@@ -50,8 +48,6 @@ private:
     double spread;
 
     QColor drawColor;
-    QColor secondaryColor;
-
 
     int emissionRate;
     const double initMass = 0.06;
@@ -61,8 +57,6 @@ private:
 
     QPen defPen;
     QBrush defBrush;
-    QPen secPen;
-    QBrush secBrush;
 };
 
 #endif // EMITTER_H

@@ -43,6 +43,10 @@ public:
             emitter->changeLifetime(value);
     }
 
+    void changeColor(int red, int green, int blue, int transparency) {
+        emitter->changeColor(red, green, blue, transparency);
+    }
+
 private:
     Emitter * emitter;
     ParticleVector particleList;

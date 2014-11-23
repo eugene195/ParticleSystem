@@ -10,25 +10,15 @@ Emitter::Emitter (const Context & context) {
     lifetime = *(int *)context.get("lifetime");
     projector = (AbstractProjector *)context.get("projector");
 
-    drawColor = createColor(DEFAULT_RED, DEFAULT_GREEN, DEFAULT_BLUE, DEFAULT_TRANSPARENCY);
-    secondaryColor = createColor(0, 0, 255, 50);
-
     defPen.setColor(drawColor);
     defBrush.setColor(drawColor);
-
-    secPen.setColor(secondaryColor);
-    secBrush.setColor(secondaryColor);
 }
 
 ParticleVector Emitter::emitParticles() {
     ParticleVector newParticles;
 
-
-
     for(int i = 0; i < emissionRate; ++i)
         newParticles.append(createParticle());
-    for(int i = 0; i < emissionRate; ++i)
-        newParticles.append(createWParticle());
     return newParticles;
 }
 
@@ -41,15 +31,6 @@ Particle * Emitter::createParticle() {
     return new Particle(newSpeed, MathVector(), initMass , newPos, lifetime, projector, defPen, defBrush);
 }
 
-Particle * Emitter::createWParticle() {
-    MathVector angle(randomAngle(speed.getAngle().X), randomAngle(speed.getAngle().Y), randomAngle(speed.getAngle().Z));
-    double length = speed.getLen();
-    MathVector newPos = position;
-    MathVector newSpeed = MathVector::fromAngle(angle, length);
-    int lifetime = randomLifeTime();
-    return new Particle(newSpeed, MathVector(), initMass , newPos, lifetime, projector, secPen, secBrush);
-}
-
 void Emitter::changeSpread(int spreadAddition) {
     spread = (spread + spreadAddition) / DEFAULT_SPREAD_MODIFIER;
 }
@@ -60,4 +41,10 @@ void Emitter::changeLifetime(int newLifetime) {
 
 void Emitter::changeRate(int rateAddition) {
     emissionRate = rateAddition;
+}
+
+void Emitter::changeColor(int red, int green, int blue, int transparency) {
+    drawColor = QColor(red, green, blue, transparency);
+    defPen.setColor(drawColor);
+    defBrush.setColor(drawColor);
 }

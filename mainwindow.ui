@@ -28,7 +28,7 @@
     <item>
      <widget class="QPushButton" name="ShowHideMenu">
       <property name="text">
-       <string>Hide</string>
+       <string>Спрятать</string>
       </property>
      </widget>
     </item>
@@ -55,11 +55,24 @@
        </property>
        <widget class="QWidget" name="tab">
         <attribute name="title">
-         <string>Emitter Configuration</string>
+         <string>Добавление излучения</string>
         </attribute>
-        <layout class="QHBoxLayout" name="horizontalLayout_8">
+        <layout class="QVBoxLayout" name="verticalLayout_14">
          <item>
-          <layout class="QVBoxLayout" name="verticalLayout_14">
+          <layout class="QHBoxLayout" name="horizontalLayout_16">
+           <item>
+            <spacer name="horizontalSpacer_5">
+             <property name="orientation">
+              <enum>Qt::Horizontal</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>40</width>
+               <height>20</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
            <item>
             <widget class="QLabel" name="label_2">
              <property name="font">
@@ -70,9 +83,39 @@
               </font>
              </property>
              <property name="text">
-              <string>Emission Parameters</string>
+              <string>Параметры излучения</string>
              </property>
             </widget>
+           </item>
+           <item>
+            <spacer name="horizontalSpacer_6">
+             <property name="orientation">
+              <enum>Qt::Horizontal</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>40</width>
+               <height>20</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+          </layout>
+         </item>
+         <item>
+          <layout class="QHBoxLayout" name="horizontalLayout_17">
+           <item>
+            <spacer name="horizontalSpacer_7">
+             <property name="orientation">
+              <enum>Qt::Horizontal</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>40</width>
+               <height>20</height>
+              </size>
+             </property>
+            </spacer>
            </item>
            <item>
             <layout class="QHBoxLayout" name="horizontalLayout">
@@ -81,7 +124,7 @@
                <item>
                 <widget class="QLabel" name="label_3">
                  <property name="text">
-                  <string>Speed</string>
+                  <string>Скорость</string>
                  </property>
                 </widget>
                </item>
@@ -125,7 +168,7 @@
                <item>
                 <widget class="QLabel" name="label_4">
                  <property name="text">
-                  <string>Acceleration</string>
+                  <string>Ускорение</string>
                  </property>
                 </widget>
                </item>
@@ -157,7 +200,7 @@
                <item>
                 <widget class="QLabel" name="label_5">
                  <property name="text">
-                  <string>Emission Rate</string>
+                  <string>Темп излучения</string>
                  </property>
                 </widget>
                </item>
@@ -177,7 +220,7 @@
                <item>
                 <widget class="QLabel" name="label_7">
                  <property name="text">
-                  <string>Lifetime</string>
+                  <string>Время жизни</string>
                  </property>
                 </widget>
                </item>
@@ -198,97 +241,263 @@
              </item>
             </layout>
            </item>
-          </layout>
-         </item>
-         <item>
-          <layout class="QVBoxLayout" name="verticalLayout_13">
            <item>
-            <widget class="QLabel" name="label">
-             <property name="font">
-              <font>
-               <pointsize>12</pointsize>
-               <weight>75</weight>
-               <bold>true</bold>
-              </font>
+            <spacer name="horizontalSpacer_2">
+             <property name="orientation">
+              <enum>Qt::Horizontal</enum>
              </property>
-             <property name="text">
-              <string>Emitter Coordinates</string>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>40</width>
+               <height>20</height>
+              </size>
              </property>
-            </widget>
+            </spacer>
            </item>
            <item>
-            <layout class="QGridLayout" name="gridLayout">
-             <item row="0" column="0" colspan="2">
+            <layout class="QVBoxLayout" name="verticalLayout_13">
+             <item>
               <layout class="QHBoxLayout" name="horizontalLayout_2">
+               <item>
+                <widget class="QLabel" name="label_18">
+                 <property name="text">
+                  <string>Координаты</string>
+                 </property>
+                </widget>
+               </item>
                <item>
                 <widget class="QDoubleSpinBox" name="EmitterX">
                  <property name="buttonSymbols">
                   <enum>QAbstractSpinBox::UpDownArrows</enum>
                  </property>
+                 <property name="minimum">
+                  <double>-500.000000000000000</double>
+                 </property>
                  <property name="maximum">
                   <double>1001.000000000000000</double>
                  </property>
                  <property name="singleStep">
-                  <double>2.000000000000000</double>
+                  <double>5.000000000000000</double>
                  </property>
                  <property name="value">
-                  <double>100.000000000000000</double>
+                  <double>0.000000000000000</double>
                  </property>
                 </widget>
                </item>
                <item>
                 <widget class="QDoubleSpinBox" name="EmitterY">
+                 <property name="minimum">
+                  <double>-500.000000000000000</double>
+                 </property>
                  <property name="maximum">
-                  <double>501.000000000000000</double>
+                  <double>1001.000000000000000</double>
                  </property>
                  <property name="singleStep">
-                  <double>2.000000000000000</double>
+                  <double>5.000000000000000</double>
                  </property>
                  <property name="value">
-                  <double>100.000000000000000</double>
+                  <double>0.000000000000000</double>
                  </property>
                 </widget>
                </item>
                <item>
                 <widget class="QDoubleSpinBox" name="EmitterZ">
+                 <property name="minimum">
+                  <double>-500.000000000000000</double>
+                 </property>
                  <property name="maximum">
-                  <double>501.000000000000000</double>
+                  <double>1001.000000000000000</double>
                  </property>
                  <property name="singleStep">
-                  <double>2.000000000000000</double>
-                 </property>
-                 <property name="value">
-                  <double>100.000000000000000</double>
-                 </property>
-                </widget>
-               </item>
-              </layout>
-             </item>
-             <item row="1" column="0">
-              <layout class="QVBoxLayout" name="verticalLayout_5">
-               <item>
-                <widget class="QLabel" name="label_8">
-                 <property name="text">
-                  <string>Spread %</string>
-                 </property>
-                </widget>
-               </item>
-               <item>
-                <widget class="QDoubleSpinBox" name="EmitterSpread">
-                 <property name="minimum">
-                  <double>1.000000000000000</double>
-                 </property>
-                 <property name="value">
                   <double>5.000000000000000</double>
                  </property>
+                 <property name="value">
+                  <double>0.000000000000000</double>
+                 </property>
                 </widget>
                </item>
               </layout>
              </item>
-             <item row="1" column="1">
-              <widget class="QPushButton" name="EmitterPlacement">
+             <item>
+              <layout class="QHBoxLayout" name="horizontalLayout_8">
+               <item>
+                <layout class="QVBoxLayout" name="verticalLayout_5">
+                 <item>
+                  <widget class="QLabel" name="label_8">
+                   <property name="text">
+                    <string>Разброс %</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QDoubleSpinBox" name="EmitterSpread">
+                   <property name="minimum">
+                    <double>1.000000000000000</double>
+                   </property>
+                   <property name="value">
+                    <double>5.000000000000000</double>
+                   </property>
+                  </widget>
+                 </item>
+                </layout>
+               </item>
+               <item>
+                <spacer name="horizontalSpacer">
+                 <property name="orientation">
+                  <enum>Qt::Horizontal</enum>
+                 </property>
+                 <property name="sizeHint" stdset="0">
+                  <size>
+                   <width>40</width>
+                   <height>20</height>
+                  </size>
+                 </property>
+                </spacer>
+               </item>
+               <item>
+                <widget class="QPushButton" name="EmitterPlacement">
+                 <property name="text">
+                  <string>Поместить</string>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </item>
+            </layout>
+           </item>
+           <item>
+            <spacer name="horizontalSpacer_8">
+             <property name="orientation">
+              <enum>Qt::Horizontal</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>40</width>
+               <height>20</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+          </layout>
+         </item>
+        </layout>
+       </widget>
+       <widget class="QWidget" name="tab_2">
+        <attribute name="title">
+         <string>Силовое поле</string>
+        </attribute>
+        <layout class="QHBoxLayout" name="horizontalLayout_18">
+         <item>
+          <layout class="QVBoxLayout" name="verticalLayout_4">
+           <item>
+            <layout class="QHBoxLayout" name="horizontalLayout_10">
+             <item>
+              <widget class="QLabel" name="label_6">
+               <property name="font">
+                <font>
+                 <pointsize>12</pointsize>
+                 <weight>75</weight>
+                 <bold>true</bold>
+                </font>
+               </property>
                <property name="text">
-                <string>Place Emitter</string>
+                <string>Координаты поля</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <spacer name="horizontalSpacer_4">
+               <property name="orientation">
+                <enum>Qt::Horizontal</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>40</width>
+                 <height>20</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
+            </layout>
+           </item>
+           <item>
+            <layout class="QHBoxLayout" name="horizontalLayout_3">
+             <item>
+              <widget class="QDoubleSpinBox" name="FieldX">
+               <property name="maximum">
+                <double>300.000000000000000</double>
+               </property>
+               <property name="value">
+                <double>200.000000000000000</double>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QDoubleSpinBox" name="FieldY">
+               <property name="maximum">
+                <double>300.000000000000000</double>
+               </property>
+               <property name="value">
+                <double>150.000000000000000</double>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QDoubleSpinBox" name="FieldZ">
+               <property name="maximum">
+                <double>300.000000000000000</double>
+               </property>
+               <property name="value">
+                <double>0.000000000000000</double>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+           <item>
+            <layout class="QHBoxLayout" name="horizontalLayout_9">
+             <item>
+              <layout class="QVBoxLayout" name="verticalLayout_15">
+               <item>
+                <widget class="QLabel" name="label_11">
+                 <property name="font">
+                  <font>
+                   <pointsize>12</pointsize>
+                   <weight>75</weight>
+                   <bold>true</bold>
+                  </font>
+                 </property>
+                 <property name="text">
+                  <string>Сила</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QSpinBox" name="FieldMass_2">
+                 <property name="minimum">
+                  <number>10</number>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </item>
+             <item>
+              <spacer name="horizontalSpacer_3">
+               <property name="orientation">
+                <enum>Qt::Horizontal</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>40</width>
+                 <height>20</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
+             <item>
+              <widget class="QPushButton" name="FieldPlacement_2">
+               <property name="text">
+                <string>Поместить</string>
                </property>
               </widget>
              </item>
@@ -297,108 +506,308 @@
           </layout>
          </item>
          <item>
-          <layout class="QHBoxLayout" name="horizontalLayout_7">
+          <spacer name="horizontalSpacer_9">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>62</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+         <item>
+          <layout class="QVBoxLayout" name="verticalLayout_18">
            <item>
-            <layout class="QVBoxLayout" name="verticalLayout_12">
+            <widget class="QLabel" name="label_17">
+             <property name="text">
+              <string>Список полей</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QListWidget" name="FieldList">
+             <property name="currentRow">
+              <number>-1</number>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+         <item>
+          <spacer name="horizontalSpacer_10">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>61</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+         <item>
+          <layout class="QVBoxLayout" name="verticalLayout_17">
+           <item>
+            <widget class="QLabel" name="label">
+             <property name="text">
+              <string>Изменение силы</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QSlider" name="FieldPowerSlider">
+             <property name="minimum">
+              <number>1</number>
+             </property>
+             <property name="sliderPosition">
+              <number>10</number>
+             </property>
+             <property name="orientation">
+              <enum>Qt::Horizontal</enum>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <spacer name="verticalSpacer">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>20</width>
+               <height>40</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+          </layout>
+         </item>
+        </layout>
+       </widget>
+       <widget class="QWidget" name="tab_3">
+        <attribute name="title">
+         <string>Изменение параметров излучения</string>
+        </attribute>
+        <layout class="QHBoxLayout" name="horizontalLayout_7">
+         <item>
+          <layout class="QHBoxLayout" name="horizontalLayout_15">
+           <item>
+            <layout class="QVBoxLayout" name="verticalLayout_9">
              <item>
-              <layout class="QVBoxLayout" name="verticalLayout_10">
+              <layout class="QHBoxLayout" name="horizontalLayout_14">
                <item>
-                <widget class="QLabel" name="label_9">
+                <widget class="QLabel" name="label_13">
                  <property name="text">
-                  <string>Emission Rate</string>
+                  <string>Red</string>
                  </property>
                 </widget>
                </item>
                <item>
-                <widget class="QSlider" name="EmissionRateSlider">
-                 <property name="minimumSize">
-                  <size>
-                   <width>0</width>
-                   <height>20</height>
-                  </size>
-                 </property>
-                 <property name="minimum">
-                  <number>1</number>
-                 </property>
+                <widget class="QSlider" name="redColorSlider">
                  <property name="maximum">
-                  <number>6</number>
-                 </property>
-                 <property name="sliderPosition">
-                  <number>3</number>
+                  <number>255</number>
                  </property>
                  <property name="orientation">
                   <enum>Qt::Horizontal</enum>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QSpinBox" name="spinBox">
+                 <property name="maximum">
+                  <number>255</number>
                  </property>
                 </widget>
                </item>
               </layout>
              </item>
              <item>
-              <layout class="QVBoxLayout" name="verticalLayout_11">
+              <layout class="QHBoxLayout" name="horizontalLayout_13">
                <item>
-                <widget class="QLabel" name="label_10">
+                <widget class="QLabel" name="label_14">
                  <property name="text">
-                  <string>Emission Spread</string>
+                  <string>Green</string>
                  </property>
                 </widget>
                </item>
                <item>
-                <widget class="QSlider" name="EmissionSpreadSlider">
-                 <property name="minimumSize">
-                  <size>
-                   <width>0</width>
-                   <height>20</height>
-                  </size>
-                 </property>
-                 <property name="baseSize">
-                  <size>
-                   <width>0</width>
-                   <height>0</height>
-                  </size>
-                 </property>
-                 <property name="minimum">
-                  <number>1</number>
-                 </property>
-                 <property name="sliderPosition">
-                  <number>5</number>
-                 </property>
-                 <property name="orientation">
-                  <enum>Qt::Horizontal</enum>
-                 </property>
-                </widget>
-               </item>
-               <item>
-                <widget class="QLabel" name="label_12">
-                 <property name="text">
-                  <string>Lifetime</string>
-                 </property>
-                </widget>
-               </item>
-               <item>
-                <widget class="QSlider" name="EmitterLifetimeSlider">
-                 <property name="minimumSize">
-                  <size>
-                   <width>0</width>
-                   <height>20</height>
-                  </size>
-                 </property>
-                 <property name="minimum">
-                  <number>10</number>
-                 </property>
+                <widget class="QSlider" name="greenColorSlider">
                  <property name="maximum">
-                  <number>500</number>
-                 </property>
-                 <property name="value">
-                  <number>100</number>
+                  <number>255</number>
                  </property>
                  <property name="orientation">
                   <enum>Qt::Horizontal</enum>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QSpinBox" name="spinBox_2">
+                 <property name="maximum">
+                  <number>255</number>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </item>
+             <item>
+              <layout class="QHBoxLayout" name="horizontalLayout_12">
+               <item>
+                <widget class="QLabel" name="label_15">
+                 <property name="text">
+                  <string>Blue</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QSlider" name="blueColorSlider">
+                 <property name="maximum">
+                  <number>255</number>
+                 </property>
+                 <property name="orientation">
+                  <enum>Qt::Horizontal</enum>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QSpinBox" name="spinBox_3">
+                 <property name="maximum">
+                  <number>255</number>
                  </property>
                 </widget>
                </item>
               </layout>
              </item>
             </layout>
+           </item>
+           <item>
+            <widget class="QWidget" name="widget" native="true">
+             <property name="minimumSize">
+              <size>
+               <width>100</width>
+               <height>100</height>
+              </size>
+             </property>
+             <property name="autoFillBackground">
+              <bool>true</bool>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+         <item>
+          <layout class="QVBoxLayout" name="verticalLayout_12">
+           <item>
+            <layout class="QVBoxLayout" name="verticalLayout_10">
+             <item>
+              <widget class="QLabel" name="label_9">
+               <property name="text">
+                <string>Темп излучения</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QSlider" name="EmissionRateSlider">
+               <property name="minimumSize">
+                <size>
+                 <width>0</width>
+                 <height>20</height>
+                </size>
+               </property>
+               <property name="minimum">
+                <number>1</number>
+               </property>
+               <property name="maximum">
+                <number>6</number>
+               </property>
+               <property name="sliderPosition">
+                <number>3</number>
+               </property>
+               <property name="orientation">
+                <enum>Qt::Horizontal</enum>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+           <item>
+            <layout class="QVBoxLayout" name="verticalLayout_11">
+             <item>
+              <widget class="QLabel" name="label_10">
+               <property name="text">
+                <string>Разброс</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QSlider" name="EmissionSpreadSlider">
+               <property name="minimumSize">
+                <size>
+                 <width>0</width>
+                 <height>20</height>
+                </size>
+               </property>
+               <property name="baseSize">
+                <size>
+                 <width>0</width>
+                 <height>0</height>
+                </size>
+               </property>
+               <property name="minimum">
+                <number>1</number>
+               </property>
+               <property name="sliderPosition">
+                <number>5</number>
+               </property>
+               <property name="orientation">
+                <enum>Qt::Horizontal</enum>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLabel" name="label_12">
+               <property name="text">
+                <string>Время жизни</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QSlider" name="EmitterLifetimeSlider">
+               <property name="minimumSize">
+                <size>
+                 <width>0</width>
+                 <height>20</height>
+                </size>
+               </property>
+               <property name="minimum">
+                <number>10</number>
+               </property>
+               <property name="maximum">
+                <number>500</number>
+               </property>
+               <property name="value">
+                <number>100</number>
+               </property>
+               <property name="orientation">
+                <enum>Qt::Horizontal</enum>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+          </layout>
+         </item>
+         <item>
+          <layout class="QVBoxLayout" name="verticalLayout_16">
+           <item>
+            <widget class="QLabel" name="label_16">
+             <property name="text">
+              <string>Список излучателей</string>
+             </property>
+            </widget>
            </item>
            <item>
             <widget class="QListWidget" name="EmitterList">
@@ -413,169 +822,6 @@
           </layout>
          </item>
         </layout>
-       </widget>
-       <widget class="QWidget" name="tab_2">
-        <attribute name="title">
-         <string>Field Configuration</string>
-        </attribute>
-        <widget class="QListWidget" name="FieldList">
-         <property name="geometry">
-          <rect>
-           <x>300</x>
-           <y>10</y>
-           <width>201</width>
-           <height>131</height>
-          </rect>
-         </property>
-         <property name="currentRow">
-          <number>-1</number>
-         </property>
-        </widget>
-        <widget class="QSlider" name="FieldPowerSlider">
-         <property name="geometry">
-          <rect>
-           <x>540</x>
-           <y>70</y>
-           <width>160</width>
-           <height>22</height>
-          </rect>
-         </property>
-         <property name="minimum">
-          <number>1</number>
-         </property>
-         <property name="sliderPosition">
-          <number>10</number>
-         </property>
-         <property name="orientation">
-          <enum>Qt::Horizontal</enum>
-         </property>
-        </widget>
-        <widget class="QWidget" name="layoutWidget">
-         <property name="geometry">
-          <rect>
-           <x>20</x>
-           <y>20</y>
-           <width>193</width>
-           <height>107</height>
-          </rect>
-         </property>
-         <layout class="QVBoxLayout" name="verticalLayout_4">
-          <item>
-           <layout class="QHBoxLayout" name="horizontalLayout_10">
-            <item>
-             <widget class="QLabel" name="label_6">
-              <property name="font">
-               <font>
-                <pointsize>12</pointsize>
-                <weight>75</weight>
-                <bold>true</bold>
-               </font>
-              </property>
-              <property name="text">
-               <string>Field Coordinates</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <spacer name="horizontalSpacer_4">
-              <property name="orientation">
-               <enum>Qt::Horizontal</enum>
-              </property>
-              <property name="sizeHint" stdset="0">
-               <size>
-                <width>40</width>
-                <height>20</height>
-               </size>
-              </property>
-             </spacer>
-            </item>
-           </layout>
-          </item>
-          <item>
-           <layout class="QHBoxLayout" name="horizontalLayout_3">
-            <item>
-             <widget class="QDoubleSpinBox" name="FieldX">
-              <property name="maximum">
-               <double>300.000000000000000</double>
-              </property>
-              <property name="value">
-               <double>200.000000000000000</double>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QDoubleSpinBox" name="FieldY">
-              <property name="maximum">
-               <double>300.000000000000000</double>
-              </property>
-              <property name="value">
-               <double>150.000000000000000</double>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QDoubleSpinBox" name="FieldZ">
-              <property name="maximum">
-               <double>300.000000000000000</double>
-              </property>
-              <property name="value">
-               <double>0.000000000000000</double>
-              </property>
-             </widget>
-            </item>
-           </layout>
-          </item>
-          <item>
-           <layout class="QHBoxLayout" name="horizontalLayout_9">
-            <item>
-             <layout class="QVBoxLayout" name="verticalLayout_15">
-              <item>
-               <widget class="QLabel" name="label_11">
-                <property name="font">
-                 <font>
-                  <pointsize>12</pointsize>
-                  <weight>75</weight>
-                  <bold>true</bold>
-                 </font>
-                </property>
-                <property name="text">
-                 <string>Power</string>
-                </property>
-               </widget>
-              </item>
-              <item>
-               <widget class="QSpinBox" name="FieldMass_2">
-                <property name="minimum">
-                 <number>10</number>
-                </property>
-               </widget>
-              </item>
-             </layout>
-            </item>
-            <item>
-             <spacer name="horizontalSpacer_3">
-              <property name="orientation">
-               <enum>Qt::Horizontal</enum>
-              </property>
-              <property name="sizeHint" stdset="0">
-               <size>
-                <width>40</width>
-                <height>20</height>
-               </size>
-              </property>
-             </spacer>
-            </item>
-            <item>
-             <widget class="QPushButton" name="FieldPlacement_2">
-              <property name="text">
-               <string>Place Field</string>
-              </property>
-             </widget>
-            </item>
-           </layout>
-          </item>
-         </layout>
-        </widget>
        </widget>
       </widget>
       <widget class="QGroupBox" name="groupBox">
@@ -722,7 +968,7 @@
         <item>
          <widget class="QPushButton" name="resetBtn">
           <property name="text">
-           <string>Reset</string>
+           <string>Сброс</string>
           </property>
          </widget>
         </item>
@@ -782,5 +1028,102 @@
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <resources/>
- <connections/>
+ <connections>
+  <connection>
+   <sender>redColorSlider</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>spinBox</receiver>
+   <slot>setValue(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>221</x>
+     <y>325</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>583</x>
+     <y>332</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>spinBox</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>redColorSlider</receiver>
+   <slot>setValue(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>576</x>
+     <y>321</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>412</x>
+     <y>333</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>greenColorSlider</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>spinBox_2</receiver>
+   <slot>setValue(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>494</x>
+     <y>371</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>577</x>
+     <y>375</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>spinBox_2</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>greenColorSlider</receiver>
+   <slot>setValue(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>583</x>
+     <y>385</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>429</x>
+     <y>378</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>blueColorSlider</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>spinBox_3</receiver>
+   <slot>setValue(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>481</x>
+     <y>421</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>594</x>
+     <y>432</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>spinBox_3</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>blueColorSlider</receiver>
+   <slot>setValue(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>586</x>
+     <y>419</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>535</x>
+     <y>421</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
 </ui>

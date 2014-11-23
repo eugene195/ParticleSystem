@@ -2,17 +2,21 @@
 #include "ui_mainwindow.h"
 
 #include <time.h>
+#include <QPalette>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
-//    NICE!
     this->setWindowState(Qt::WindowMaximized);
     scene = new QGraphicsScene();
     scene->setBackgroundBrush(QBrush(Qt::black));
     manager.initScene(scene);
     ui->setupUi(this);
+    connect(ui->redColorSlider, SIGNAL(valueChanged(int)), SLOT(onColorChanged()));
+    connect(ui->blueColorSlider, SIGNAL(valueChanged(int)), SLOT(onColorChanged()));
+    connect(ui->greenColorSlider, SIGNAL(valueChanged(int)), SLOT(onColorChanged()));
+    onColorChanged();
     srand (time(NULL));
     ui->graphicsView->setScene(scene);
 }
@@ -132,8 +136,6 @@ void MainWindow::resetAll()
     ui->pushButton->setText("Resume");
 }
 
-
-//Exception here
 void MainWindow::on_EmissionRateSlider_valueChanged(int value)
 {
     int emitNum = ui->EmitterList->currentRow();
@@ -166,7 +168,6 @@ void MainWindow::on_resize_plus_clicked()
 {
     double factor = 1.3;
     manager.resize(factor);
-    qDebug() << "Resize +";
 }
 
 void MainWindow::on_resize_minus_clicked()
@@ -217,13 +218,13 @@ void MainWindow::on_action_2_triggered()
 
 void MainWindow::on_ShowHideMenu_clicked()
 {
-    if (ui->ShowHideMenu->text() == "hide") {
+    if (ui->ShowHideMenu->text() == "Спрятать") {
         ui->splitter->hide();
-        ui->ShowHideMenu->setText("show");
+        ui->ShowHideMenu->setText("Показать");
     }
     else {
         ui->splitter->show();
-        ui->ShowHideMenu->setText("hide");
+        ui->ShowHideMenu->setText("Спрятать");
     }
 }
 
@@ -243,4 +244,18 @@ void MainWindow::on_action_5_triggered()
 {
     this->resetAll();
     manager.setProjectionType(MATRIX);
+}
+
+void MainWindow::onColorChanged()
+{
+    m_color.setRgb(ui->redColorSlider->value(), ui->greenColorSlider->value(), ui->blueColorSlider->value());
+    QPalette pal = ui->widget->palette();
+    pal.setColor(QPalette::Window, m_color);
+    ui->widget->setPalette(pal);
+    emit colorChanged(m_color);
+    int emitNum = ui->EmitterList->currentRow();
+    if (emitNum >= 0)
+        manager.changeColorForEmission(emitNum, ui->redColorSlider->value()
+                                       , ui->greenColorSlider->value()
+                                       , ui->blueColorSlider->value(), 255);
 }

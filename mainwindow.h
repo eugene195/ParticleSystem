@@ -5,6 +5,7 @@
 #include <QGraphicsScene>
 #include <QTimer>
 #include <QWheelEvent>
+#include <QColor>
 #include "systemmanager.h"
 #include "context.h"
 
@@ -15,6 +16,7 @@ class MainWindow;
 class MainWindow : public QMainWindow
 {
     Q_OBJECT
+    Q_PROPERTY(QColor color READ color NOTIFY colorChanged)
 
 public:
     explicit MainWindow(QWidget *parent = 0);
@@ -22,6 +24,11 @@ public:
     void keyPressEvent(QKeyEvent *event);
     void resetAll();
     ~MainWindow();
+
+    QColor color() const
+    {
+        return m_color;
+    }
 
 private slots:
     void on_pushButton_clicked();
@@ -60,16 +67,22 @@ private slots:
 
     void on_action_5_triggered();
 
+    void onColorChanged();
+
 public slots:
     void loop()
     {
         manager.loop();
     }
 
+signals:
+    void colorChanged(QColor arg);
+
 private:
     Ui::MainWindow *ui;
     QGraphicsScene *scene;
     SystemManager manager;
+    QColor m_color;
 };
 
 #endif // MAINWINDOW_H

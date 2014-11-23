@@ -85,6 +85,11 @@ public:
             storages[emission]->changeEmitterField(value, parameter);
     }
 
+    void changeColorForEmission(int emission, int red, int green, int blue, int transparency) {
+        if (storages.value(emission))
+            storages[emission]->changeColor(red, green, blue, transparency);
+    }
+
     void changeForField(int field, QString parameter, int value) {
         if (storages.value(field))
             fields[field]->changeField(parameter, value);
@@ -95,14 +100,12 @@ public:
         running = 0;
 //        TODO
 //        delete projector;
-        foreach (EmissionStorage * st, storages) {
+        foreach (EmissionStorage * st, storages)
             delete st;
-        }
         storages.clear();
 
-        foreach (Field * fld, fields) {
+        foreach (Field * fld, fields)
             delete fld;
-        }
         fields.clear();
     }
 
