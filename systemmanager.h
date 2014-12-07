@@ -8,7 +8,6 @@
 #include "Projectors/scenequaternion.h"
 #include "scenematrix.h"
 
-
 class SystemManager
 {
 public:
@@ -18,8 +17,6 @@ public:
 //        static SystemManager inst;
 //        return inst;
 //    }
-
-
 
     void initScene(QGraphicsScene *scene) {
         drawer = new Drawer(scene);
@@ -62,14 +59,14 @@ public:
     void rotateY(RotateDirection direct) {
         if (direct == YPOS)
             projector->rotateYPos();
-        else if (direct == YNEG)
+        else
             projector->rotateYNeg();
     }
 
     void rotateX(RotateDirection direct) {
         if (direct == XPOS)
             projector->rotateXPos();
-        else if (direct == XNEG)
+        else
             projector->rotateXNeg();
     }
 

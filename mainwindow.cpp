@@ -11,13 +11,19 @@ MainWindow::MainWindow(QWidget *parent) :
     this->setWindowState(Qt::WindowMaximized);
     scene = new QGraphicsScene();
     scene->setBackgroundBrush(QBrush(Qt::black));
+
+    srand (time(NULL));
+//    int i = rand() % 7;
+//    char str[10];
+//    itoa(i, str, 10);
+//    scene->addPixmap(QPixmap(qApp->applicationDirPath() + "/" + str + ".jpg"));
+
     manager.initScene(scene);
     ui->setupUi(this);
     connect(ui->redColorSlider, SIGNAL(valueChanged(int)), SLOT(onColorChanged()));
     connect(ui->blueColorSlider, SIGNAL(valueChanged(int)), SLOT(onColorChanged()));
     connect(ui->greenColorSlider, SIGNAL(valueChanged(int)), SLOT(onColorChanged()));
     onColorChanged();
-    srand (time(NULL));
     ui->graphicsView->setScene(scene);
 }
 
@@ -30,9 +36,9 @@ void MainWindow::on_pushButton_clicked()
 {
     manager.triggerRunning();
     if (manager.isRunning())
-        ui->pushButton->setText("Pause");
+        ui->pushButton->setText("Пауза");
     else
-        ui->pushButton->setText("Resume");
+        ui->pushButton->setText("Возобновить");
 }
 
 void MainWindow::on_FieldPlacement_2_clicked()
@@ -67,7 +73,7 @@ void MainWindow::on_EmitterPlacement_clicked()
     double spread = ui->EmitterSpread->value();
     int emissionRate = ui->EmitterRate->value();
     int lifetime = ui->EmitterLifetime->value();
-    QColor col(Qt::blue);
+    QColor col(Qt::white);
 
     Context context;
     context.add(&acceleration, "acceleration");
@@ -133,7 +139,7 @@ void MainWindow::resetAll()
     ui->EmitterList->clear();
     ui->FieldList->clear();
     manager.reset();
-    ui->pushButton->setText("Resume");
+    ui->pushButton->setText("Возобновить");
 }
 
 void MainWindow::on_EmissionRateSlider_valueChanged(int value)
