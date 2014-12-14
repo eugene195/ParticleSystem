@@ -7,6 +7,7 @@
 #include "field.h"
 #include "Projectors/scenequaternion.h"
 #include "scenematrix.h"
+#include <chrono>
 
 class SystemManager
 {

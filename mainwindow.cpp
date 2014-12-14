@@ -109,6 +109,14 @@ void MainWindow::wheelEvent(QWheelEvent *event) {
 void MainWindow::keyPressEvent(QKeyEvent *event) {
     int key = event->key();
 
+//    auto begin = std::chrono::high_resolution_clock::now();
+
+//    for (int i = 0; i < 10000; ++i)
+//        manager.rotateY(YNEG);
+
+//    auto end = std::chrono::high_resolution_clock::now();
+//    qDebug() <<  std::chrono::duration_cast<std::chrono::nanoseconds>(end-begin).count();
+
     int valX, valY;
     valX = valY = 0;
     if (key == 65)
