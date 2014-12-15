@@ -24,14 +24,6 @@ void EmissionStorage::moveParticles()
             --size;
         }
     }
-//    foreach(Particle * part, particleList){
-//        if (part->isAlive())
-//            part->advance();
-//        else {
-//            partToDelete.append(part);
-//            particleList.removeOne(part);
-//        }
-//    }
 }
 
 void EmissionStorage::applyField(const FieldList &fields)

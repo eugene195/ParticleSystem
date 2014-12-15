@@ -11,13 +11,6 @@
 class SystemManager
 {
 public:
-//    TODO
-//    static const SystemManager & Instance()
-//    {
-//        static SystemManager inst;
-//        return inst;
-//    }
-
     void initScene(QGraphicsScene *scene) {
         drawer = new Drawer(scene);
     }
@@ -26,7 +19,9 @@ public:
         context.add(projector, QString("projector"));
         Emitter * emitter = new Emitter(context);
         EmissionStorage * store = new EmissionStorage(emitter);
+        store->zCoordinate = emitter->getZ();
         storages.append(store);
+        qSort(storages.begin(), storages.end(), [](EmissionStorage * a, EmissionStorage * b) { return a->zCoordinate < b->zCoordinate; } );
     }
 
     void addField(Field * fld) {
@@ -111,6 +106,7 @@ public:
         running = 0;
         projector = new SceneQuaternion();
     }
+
 public slots:
     void loop();
 private:

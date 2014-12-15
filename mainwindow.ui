@@ -174,6 +174,9 @@
                </item>
                <item>
                 <widget class="QSpinBox" name="EmitterAccX">
+                 <property name="minimum">
+                  <number>-10</number>
+                 </property>
                  <property name="maximum">
                   <number>10</number>
                  </property>
@@ -181,6 +184,9 @@
                </item>
                <item>
                 <widget class="QSpinBox" name="EmitterAccY">
+                 <property name="minimum">
+                  <number>-10</number>
+                 </property>
                  <property name="maximum">
                   <number>10</number>
                  </property>
@@ -188,6 +194,9 @@
                </item>
                <item>
                 <widget class="QSpinBox" name="EmitterAccZ">
+                 <property name="minimum">
+                  <number>-10</number>
+                 </property>
                  <property name="maximum">
                   <number>10</number>
                  </property>
@@ -271,7 +280,7 @@
                   <enum>QAbstractSpinBox::UpDownArrows</enum>
                  </property>
                  <property name="minimum">
-                  <double>-500.000000000000000</double>
+                  <double>-1000.000000000000000</double>
                  </property>
                  <property name="maximum">
                   <double>1001.000000000000000</double>
@@ -287,7 +296,7 @@
                <item>
                 <widget class="QDoubleSpinBox" name="EmitterY">
                  <property name="minimum">
-                  <double>-500.000000000000000</double>
+                  <double>-1000.000000000000000</double>
                  </property>
                  <property name="maximum">
                   <double>1001.000000000000000</double>
@@ -303,7 +312,7 @@
                <item>
                 <widget class="QDoubleSpinBox" name="EmitterZ">
                  <property name="minimum">
-                  <double>-500.000000000000000</double>
+                  <double>-1000.000000000000000</double>
                  </property>
                  <property name="maximum">
                   <double>1001.000000000000000</double>
@@ -424,28 +433,37 @@
             <layout class="QHBoxLayout" name="horizontalLayout_3">
              <item>
               <widget class="QDoubleSpinBox" name="FieldX">
+               <property name="minimum">
+                <double>-1000.000000000000000</double>
+               </property>
                <property name="maximum">
-                <double>300.000000000000000</double>
+                <double>1000.000000000000000</double>
                </property>
                <property name="value">
-                <double>200.000000000000000</double>
+                <double>0.000000000000000</double>
                </property>
               </widget>
              </item>
              <item>
               <widget class="QDoubleSpinBox" name="FieldY">
+               <property name="minimum">
+                <double>-1000.000000000000000</double>
+               </property>
                <property name="maximum">
-                <double>300.000000000000000</double>
+                <double>1000.000000000000000</double>
                </property>
                <property name="value">
-                <double>150.000000000000000</double>
+                <double>0.000000000000000</double>
                </property>
               </widget>
              </item>
              <item>
               <widget class="QDoubleSpinBox" name="FieldZ">
+               <property name="minimum">
+                <double>-1000.000000000000000</double>
+               </property>
                <property name="maximum">
-                <double>300.000000000000000</double>
+                <double>1000.000000000000000</double>
                </property>
                <property name="value">
                 <double>0.000000000000000</double>
@@ -475,7 +493,7 @@
                <item>
                 <widget class="QSpinBox" name="FieldMass_2">
                  <property name="minimum">
-                  <number>10</number>
+                  <number>1</number>
                  </property>
                 </widget>
                </item>
@@ -560,6 +578,12 @@
            </item>
            <item>
             <widget class="QSlider" name="FieldPowerSlider">
+             <property name="minimumSize">
+              <size>
+               <width>0</width>
+               <height>20</height>
+              </size>
+             </property>
              <property name="minimum">
               <number>1</number>
              </property>
@@ -601,13 +625,24 @@
               <layout class="QHBoxLayout" name="horizontalLayout_14">
                <item>
                 <widget class="QLabel" name="label_13">
+                 <property name="font">
+                  <font>
+                   <pointsize>16</pointsize>
+                  </font>
+                 </property>
                  <property name="text">
-                  <string>Red</string>
+                  <string>R</string>
                  </property>
                 </widget>
                </item>
                <item>
                 <widget class="QSlider" name="redColorSlider">
+                 <property name="minimumSize">
+                  <size>
+                   <width>0</width>
+                   <height>20</height>
+                  </size>
+                 </property>
                  <property name="maximum">
                   <number>255</number>
                  </property>
@@ -629,13 +664,24 @@
               <layout class="QHBoxLayout" name="horizontalLayout_13">
                <item>
                 <widget class="QLabel" name="label_14">
+                 <property name="font">
+                  <font>
+                   <pointsize>16</pointsize>
+                  </font>
+                 </property>
                  <property name="text">
-                  <string>Green</string>
+                  <string>G</string>
                  </property>
                 </widget>
                </item>
                <item>
                 <widget class="QSlider" name="greenColorSlider">
+                 <property name="minimumSize">
+                  <size>
+                   <width>0</width>
+                   <height>20</height>
+                  </size>
+                 </property>
                  <property name="maximum">
                   <number>255</number>
                  </property>
@@ -657,13 +703,24 @@
               <layout class="QHBoxLayout" name="horizontalLayout_12">
                <item>
                 <widget class="QLabel" name="label_15">
+                 <property name="font">
+                  <font>
+                   <pointsize>16</pointsize>
+                  </font>
+                 </property>
                  <property name="text">
-                  <string>Blue</string>
+                  <string>B</string>
                  </property>
                 </widget>
                </item>
                <item>
                 <widget class="QSlider" name="blueColorSlider">
+                 <property name="minimumSize">
+                  <size>
+                   <width>0</width>
+                   <height>20</height>
+                  </size>
+                 </property>
                  <property name="maximum">
                   <number>255</number>
                  </property>
@@ -910,6 +967,12 @@
              </item>
              <item>
               <widget class="QSlider" name="rotatorOZ">
+               <property name="minimumSize">
+                <size>
+                 <width>0</width>
+                 <height>20</height>
+                </size>
+               </property>
                <property name="minimum">
                 <number>1</number>
                </property>

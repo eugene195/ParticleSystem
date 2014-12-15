@@ -47,6 +47,8 @@ public:
         emitter->changeColor(red, green, blue, transparency);
     }
 
+    double zCoordinate;
+
 private:
     Emitter * emitter;
     ParticleVector particleList;

@@ -25,7 +25,6 @@ public:
     Emitter (const Context & context);
     ParticleVector emitParticles();
 
-//    Типа конструктивное решение - хранить партиклы в куче
     Particle * createParticle();
     Particle * createWParticle();
     void changeSpread(int spreadAddition);
@@ -39,6 +38,10 @@ public:
     }
     double randomAngle(double current){
         return current + spread - (rand() * spread * 2);
+    }
+
+    double getZ() {
+        return position.Z;
     }
 
 private:
